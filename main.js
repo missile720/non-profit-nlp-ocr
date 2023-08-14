@@ -1,13 +1,6 @@
 const fs = require("fs");
-const csv = require("csv-parser");
 const JSONStream = require("JSONStream");
 const { SentimentManager } = require("node-nlp");
-
-const headers = [
-    "feedback_id",
-    "user_id",
-    "feedback"
-];
 
 // Main Driver
 (() => {
@@ -25,26 +18,18 @@ const headers = [
 
     const sentiment = new SentimentManager();
 
-    const streamResults = [];
-    
+    // Assumes the main JSON will only have a singular member which will
+    // be structured as an array of all feedback entries, wherein the 
+    // user's written feedback will be in a member called "feedback"
     feedbackStream
-        .pipe(csv({
-            headers: headers,
-            skipLines: 1
-        }))
+        .pipe(JSONStream.parse("*"))
         .on("data", (chunk) => {
-            sentiment
-                .process("en", chunk["feedback"])
-                .then(result => console.log({
-                    ...chunk,
-                    id: chunk["feedback_id"],
-                    sentiment_analysis: result
-                }));
+            chunk.forEach(feedbackEntry => {
+                sentiment.process("en", feedbackEntry.feedback)
+                    .then(result => console.log({
+                        ...feedbackEntry,
+                        sentiment_analysis: result
+                    }));
+            })
         });
-
-    // feedbackStream
-    //     .on("end", () => console.log(streamResults));
-
-    // feedbackStream
-    //     .on("close", () => console.log(streamResults));
 })()
