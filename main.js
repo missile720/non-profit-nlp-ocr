@@ -1,5 +1,6 @@
 const fs = require("fs");
 const csv = require("csv-parser");
+const JSONStream = require("JSONStream");
 const { SentimentManager } = require("node-nlp");
 
 const headers = [
@@ -36,8 +37,8 @@ const headers = [
                 .process("en", chunk["feedback"])
                 .then(result => console.log({
                     ...chunk,
-                    // id: chunk["feedback_id"],
-                    // sentiment_analysis: result
+                    id: chunk["feedback_id"],
+                    sentiment_analysis: result
                 }));
         });
 
