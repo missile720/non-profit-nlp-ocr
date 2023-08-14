@@ -36,8 +36,8 @@ const headers = [
                 .process("en", chunk["feedback"])
                 .then(result => console.log({
                     ...chunk,
-                    id: chunk["feedback_id"],
-                    sentiment_analysis: result
+                    // id: chunk["feedback_id"],
+                    // sentiment_analysis: result
                 }));
         });
 
