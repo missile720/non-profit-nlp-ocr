@@ -1,5 +1,6 @@
 const fs = require("fs");
 const csv = require("csv-parser");
+const { SentimentManager } = require("node-nlp");
 
 const headers = [
     "feedback_id",
@@ -11,7 +12,7 @@ const headers = [
 (() => {
     const feedbackCsvFile = process.argv[2];
 
-    const feedbackStream = fs.createReadStream(feedbackCsvFile, "utf-8")
+    const feedbackStream = fs.createReadStream(feedbackCsvFile, "utf-8");
         
     feedbackStream.on("error", (error) => {
         if (error.code === "ENOENT") {
@@ -20,6 +21,10 @@ const headers = [
             console.log(error)
         }
     });
+
+    const sentiment = new SentimentManager();
+
+    const streamResults = [];
     
     feedbackStream
         .pipe(csv({
@@ -27,12 +32,18 @@ const headers = [
             skipLines: 1
         }))
         .on("data", (chunk) => {
-            console.log(chunk);
+            sentiment
+                .process("en", chunk["feedback"])
+                .then(result => console.log({
+                    ...chunk,
+                    id: chunk["feedback_id"],
+                    sentiment_analysis: result
+                }));
         });
 
-    feedbackStream
-        .on("end", () => console.log(`${feedbackCsvFile} has been processed.`));
+    // feedbackStream
+    //     .on("end", () => console.log(streamResults));
 
-    feedbackStream
-        .on("close", () => console.log(`${feedbackCsvFile} stream has been closed.`))
+    // feedbackStream
+    //     .on("close", () => console.log(streamResults));
 })()
