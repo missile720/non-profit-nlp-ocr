@@ -34,7 +34,21 @@ const calcAverageSentiment = (sentimentScores) => {
         averageSentiment = score.plus(averageSentiment)
     );
 
-    return averageSentiment.dividedBy(scoresAmt).toFixed();
+    return averageSentiment.dividedBy(scoresAmt);
+}
+
+/**
+ * Returns the vote of a sentiment score, whether or not a computed
+ * sentiment was neutral, positive, or negative, based on senticon scoring,
+ * the lexicon scoring system used by the SentimentManager to compute
+ * sentiment per message
+ * @param {BigNumber} sentimentScore A sentiment score
+ * @returns {string} The vote of the score based on senticon scoring
+ */
+const getSentimentVote = (sentimentScore) => {
+    if (sentimentScore.isEqualTo(0)) return "neutral";
+
+    return sentimentScore.isGreaterThan(0) ? "postive" : "negative";
 }
 
 // Main Driver
@@ -97,6 +111,7 @@ const calcAverageSentiment = (sentimentScores) => {
 
     feedbackStream
         .on("close", () => {
-            console.log(calcAverageSentiment(sentimentScores));
+            const averageSentiment = calcAverageSentiment(sentimentScores);
+            console.log(`Average sentiment of dataset is ${getSentimentVote(averageSentiment)} with a score of ${averageSentiment.toFixed()}`);
         })
 })();
