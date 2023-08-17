@@ -14,7 +14,9 @@ class SentimentStatisticTracker {
 
     /**
      * Adds a sentiment score to the tracker's computed sentimentScores,
-     * and associates the score with a user
+     * and associates the score with a user by adding that score to the
+     * user's calulcated scores then calculating that user's averageScore
+     * for sentiment
      * @param {Number} sentimentScore A computed sentiment score
      * @param {string} userId A string indicating the id of the user whose
      * feedback was scord
@@ -25,10 +27,19 @@ class SentimentStatisticTracker {
         this.sentimentScores.push(newScore);
 
         if (!this.userScores.has(userId)) {
-            this.userScores.set(userId, []);
+            this.userScores.set(userId,
+                {
+                    scores: [],
+                    averageScore: null
+                }    
+            );
         }
 
-        this.userScores.get(userId).push(newScore);
+        const userScore = this.userScores.get(userId);
+        userScore.scores.push(newScore);
+        userScore.averageScore = this.calcRunningAverage(
+            userScore.averageScore, newScore, userScore.scores.length
+        );
     }
 
     /**
@@ -51,6 +62,29 @@ class SentimentStatisticTracker {
     }
 
     /**
+     * Calculates the running average of a set of user scores using the 
+     * Welford's Method 
+     * (https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+     * @param {BigNumber} mk The current running average
+     * @param {BigNumber} xk The new score to add to a running averag
+     * @param {Number} k The length of the scores to calculate from
+     * @returns 
+     */
+    calcRunningAverage(mk, xk, k) {
+        // Start of the running average calulation, simply return the
+        // first score to add, which in our case is xk [which can be considered
+        // x1]
+        if (mk === null) {
+            return xk;
+        }
+
+        const xkMinusMk = xk.minus(mk);
+        const welfordDifference = xkMinusMk.dividedBy(k);
+
+        return mk.plus(welfordDifference);
+    }
+
+    /**
      * @returns {BigNumber} The average sentiment of sentimentScores
      */
     calcOverallAverageSentiment() {
@@ -63,7 +97,7 @@ class SentimentStatisticTracker {
      * @returns {BigNumber}
      */
     getAverageSentimentForUser(userId) {
-        return this.calcAverageSentiment(this.userScores.get(userId));
+        return this.userScores.get(userId).averageScore;
     }
 
     /**
