@@ -6,7 +6,8 @@ class SentimentStatisticTracker {
     constructor() {
         this.sentimentManger = new SentimentManager();
         this.sentimentScores = [];
-        // Individual arrays for each user and their associated sentiment scores
+        // Maps individual arrays for each user and 
+        // their associated sentiment scores
         this.userScores = new Map(); 
         this.language = "en";
     }
@@ -27,7 +28,7 @@ class SentimentStatisticTracker {
             this.userScores.set(userId, []);
         }
 
-        this.userScores.get(userId).push(sentimentScore);
+        this.userScores.get(userId).push(newScore);
     }
 
     /**
@@ -57,6 +58,15 @@ class SentimentStatisticTracker {
     }
 
     /**
+     * 
+     * @param {string} userId 
+     * @returns {BigNumber}
+     */
+    getAverageSentimentForUser(userId) {
+        return this.calcAverageSentiment(this.userScores.get(userId));
+    }
+
+    /**
      * Given an array of sentiment scores, returns that array's average
      * @param {BigNumber[]} sentiments An array of sentiment scores
      * @returns {BigNumber} The average sentiment of the sentiments
@@ -71,7 +81,8 @@ class SentimentStatisticTracker {
 
         let averageSentiment = new BigNumber(0);
 
-        this.sentimentScores.forEach(score => 
+
+        sentiments.forEach(score => 
             averageSentiment = averageSentiment.plus(score)
         );
 
