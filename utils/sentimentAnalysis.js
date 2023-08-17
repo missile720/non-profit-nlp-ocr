@@ -6,15 +6,28 @@ class SentimentStatisticTracker {
     constructor() {
         this.sentimentManger = new SentimentManager();
         this.sentimentScores = [];
+        // Individual arrays for each user and their associated sentiment scores
+        this.userScores = new Map(); 
         this.language = "en";
     }
 
     /**
-     * Adds a sentiment score to the tracker's computed sentimentScores
+     * Adds a sentiment score to the tracker's computed sentimentScores,
+     * and associates the score with a user
      * @param {Number} sentimentScore A computed sentiment score
+     * @param {string} userId A string indicating the id of the user whose
+     * feedback was scord
      */
-    addScore(sentimentScore) {
-        this.sentimentScores.push(new BigNumber(sentimentScore));
+    addScore(sentimentScore, userId) {
+        const newScore = new BigNumber(sentimentScore);
+
+        this.sentimentScores.push(newScore);
+
+        if (!this.userScores.has(userId)) {
+            this.userScores.set(userId, []);
+        }
+
+        this.userScores.get(userId).push(sentimentScore);
     }
 
     /**
@@ -27,7 +40,7 @@ class SentimentStatisticTracker {
     process(feedbackEntry) {
         this.sentimentManger.process(this.language, feedbackEntry.feedback)
             .then(result => {
-                this.addScore(result.score);
+                this.addScore(result.score, feedbackEntry["user_id"]);
 
                 console.log({
                     ...feedbackEntry,
