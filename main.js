@@ -63,7 +63,7 @@ const isJson = (file) => {
 
     feedbackStream
         .on("close", () => {
-            const averageSentiment = sentiment.calcAverageSentiment(sentiment.sentimentScores);
+            const averageSentiment = sentiment.calcOverallAverageSentiment(sentiment.sentimentScores);
             console.log(`Average sentiment of dataset is ${sentiment.getSentimentVote(averageSentiment)} with a score of ${averageSentiment.toFixed()}`);
         })
 })();

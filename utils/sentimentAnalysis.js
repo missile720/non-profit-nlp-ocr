@@ -13,16 +13,18 @@ class SentimentStatisticTracker {
      * Adds a sentiment score to the tracker's computed sentimentScores
      * @param {Number} sentimentScore A computed sentiment score
      */
-    addScore = sentimentScore => {
+    addScore(sentimentScore) {
         this.sentimentScores.push(new BigNumber(sentimentScore));
     }
 
     /**
+     * Processes a feedback entry by calculating its feedback and adding it 
+     * to the total sentimentScores calculated
      * @param {Object} feedbackEntry An object consisting of a feedback_id,
      * user_id, and a feedback entry, which contains a string from which we
      * can process the sentiment of
      */
-    process = feedbackEntry => {
+    process(feedbackEntry) {
         this.sentimentManger.process(this.language, feedbackEntry.feedback)
             .then(result => {
                 this.addScore(result.score);
@@ -37,8 +39,12 @@ class SentimentStatisticTracker {
     /**
      * @returns {BigNumber} The average sentiment of sentimentScores
      */
-    calcAverageSentiment = () => {
-        const scoresAmt = this.sentimentScores.length;
+    calcOverallAverageSentiment() {
+        return this.calcAverageSentiment(this.sentimentScores);
+    }
+
+    calcAverageSentiment(sentiments) {
+        const scoresAmt = sentiments.length;
 
         // Avoids divide by 0 error
         if (scoresAmt === 0) {
@@ -48,7 +54,7 @@ class SentimentStatisticTracker {
         let averageSentiment = new BigNumber(0);
 
         this.sentimentScores.forEach(score => 
-            averageSentiment = score.plus(averageSentiment)
+            averageSentiment = averageSentiment.plus(score)
         );
 
         return averageSentiment.dividedBy(scoresAmt);
@@ -62,7 +68,7 @@ class SentimentStatisticTracker {
      * @param {BigNumber} sentimentScore A sentiment score
      * @returns {string} The vote of the score based on senticon scoring
      */
-    getSentimentVote = (sentimentScore) => {
+    getSentimentVote(sentimentScore) {
         if (sentimentScore.isEqualTo(0)) return "neutral";
 
         return sentimentScore.isGreaterThan(0) ? "postive" : "negative";
