@@ -43,6 +43,11 @@ class SentimentStatisticTracker {
         return this.calcAverageSentiment(this.sentimentScores);
     }
 
+    /**
+     * Given an array of sentiment scores, returns that array's average
+     * @param {BigNumber[]} sentiments An array of sentiment scores
+     * @returns {BigNumber} The average sentiment of the sentiments
+     */
     calcAverageSentiment(sentiments) {
         const scoresAmt = sentiments.length;
 
