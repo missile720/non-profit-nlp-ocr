@@ -16,18 +16,13 @@ class SentimentStatisticTracker {
         this.language = "en";
     }
 
-    /**
-     */
     addScore(conversationId, userId, sentimentScore) {
         const newScore = new BigNumber(sentimentScore);
 
         this.sentimentScores.push(newScore);
 
-        // if (!this.conversationScores.has(conversationId)) {
-        //     this.conversationScores.set(conversationId, null);
-        // }
-
         this.addUserScore(this.userScores, userId, newScore);
+        this.addConversationScore(conversationId, userId, newScore);
     }
 
     addUserScore(userScores, userId, newScore) {
@@ -48,7 +43,26 @@ class SentimentStatisticTracker {
     }
 
     addConversationScore(conversationId, userId, newScore) {
-        
+        if (!this.conversationScores.has(conversationId)) {
+            this.conversationScores.set(conversationId, 
+                {
+                    scores: [],
+                    averageScore: null,
+                    // Maps each user's userScore per a 
+                    // conversation
+                    userScores: new Map()
+                }    
+            );
+        }
+
+        const conversationScore = this.conversationScores.get(conversationId);
+        conversationScore.scores.push(newScore);
+        conversationScore.averageScore = this.calcRunningAverage(
+            conversationScore.averageScore, 
+            newScore, 
+            conversationScore.scores.length
+        );
+        this.addUserScore(conversationScore.userScores, userId, newScore);
     }
 
     /**
@@ -59,9 +73,9 @@ class SentimentStatisticTracker {
         messages.forEach(message => 
             this.sentimentManger.process(this.language, message.body)
                 .then(result => {
-                    if (message.body.length < 1000)
-                    // console.log(message.sender, message.body, result.score);
-                    this.addScore(message.sender, message.sender, result.score);
+                    // if (message.body.length < 1000)
+                    //     console.log(message.sender, message.body, result.score);
+                    this.addScore(conversationId, message.sender, result.score);
                 })
         );
     }
@@ -96,13 +110,8 @@ class SentimentStatisticTracker {
         return this.calcAverageSentiment(this.sentimentScores);
     }
 
-    /**
-     * 
-     * @param {string} userId 
-     * @returns {BigNumber}
-     */
-    getAverageSentimentForUser(userId) {
-        return this.userScores.get(userId).averageScore;
+    getAverageSentimentForUser(userScores, userId) {
+        return userScores.get(userId).averageScore;
     }
 
     /**
@@ -119,7 +128,6 @@ class SentimentStatisticTracker {
         }
 
         let averageSentiment = new BigNumber(0);
-
 
         sentiments.forEach(score => 
             averageSentiment = averageSentiment.plus(score)
@@ -140,6 +148,39 @@ class SentimentStatisticTracker {
         if (sentimentScore.isEqualTo(0)) return "neutral";
 
         return sentimentScore.isGreaterThan(0) ? "postive" : "negative";
+    }
+
+    logSentimentStats() {
+        console.log("--------Average Sentiment Per Conversation--------");
+        this.conversationScores.forEach((value, key) => {
+            const conversationScore = this.conversationScores.get(key);
+            const conversationVote = this.getSentimentVote(conversationScore.averageScore);
+            console.log(`Conversation [${key}] has an average ${conversationVote} sentiment of ${conversationScore.averageScore.toFixed()}`);
+            
+            conversationScore.userScores.forEach((value, key) => {
+                console.log(
+                    "\t----",
+                    this.getUserSentimentStat(conversationScore.userScores, key)
+                )
+            });
+        });
+        console.log();
+
+        console.log("--------Average Sentiment Per User--------");
+        this.userScores.forEach((value, key) => 
+            console.log(this.getUserSentimentStat(this.userScores, key))
+        );
+        console.log();
+
+        const averageSentiment = this.calcOverallAverageSentiment(this.sentimentScores);
+        console.log(`Average sentiment of dataset is ${this.getSentimentVote(averageSentiment)} with a score of ${averageSentiment.toFixed()}`);
+    }
+
+    getUserSentimentStat(userScores, userId) {
+        const userSentiment = this.getAverageSentimentForUser(userScores, userId);
+        const userVote = this.getSentimentVote(userSentiment);
+
+        return `User of id [${userId}] has a ${userVote} of ${userSentiment.toFixed()}`;
     }
 }
 
