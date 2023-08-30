@@ -16,6 +16,16 @@ class SentimentStatisticTracker {
         this.language = "en";
     }
 
+    /**
+     * Adds a sentiment score to the stat tracker by adding it to its
+     * associated conversationScores and userScores.
+     * @param {string} conversationId The id of the conversations a new
+     * sentiment score is from
+     * @param {string} userId The user associated with the new sentiment
+     * score
+     * @param {number} sentimentScore A computed sentiment score to 
+     * process for stat tracking
+     */
     addScore(conversationId, userId, sentimentScore) {
         const newScore = new BigNumber(sentimentScore);
 
@@ -25,7 +35,25 @@ class SentimentStatisticTracker {
         this.addConversationScore(conversationId, userId, newScore);
     }
 
+    /**
+     * Adds a given newScore to a given userId's userScores entry in order
+     * to track overall satisfaction sentiment for that user in the given
+     * userScores
+     * @param {Map} userScores A map of a userId to an object consisting of
+     * the following members:
+     * -scores {BigNumber[]} An array of their sentimentScores
+     * -averageScore {BigNumber} Their computed average sentiment score for 
+     * this set of userScores
+     * userScores can either be this.userScores or a conversationScore's
+     * userScores (which store only the userScores that are also 
+     * associated with that conversation)
+     * @param {string} userId The user in userScores to associate the newScore
+     * with
+     * @param {BigNumber} newScore The sentiment score to process for the user
+     */
     addUserScore(userScores, userId, newScore) {
+        // If userScores doesn't contain the user, initialize the user
+        // in the userScores map.
         if (!userScores.has(userId)) {
             userScores.set(userId,
                 {
@@ -42,7 +70,19 @@ class SentimentStatisticTracker {
         );
     }
 
+    /**
+     * Adds a given newScore to this.conversationsScores in order to
+     * track overall satisfaction sentiment for that conversation
+     * @param {string} conversationId The id for a conversation in 
+     * this.conversationScores
+     * @param {string} userId The id for a user in this.userScores
+     * as well as the userScores member in each conversationScore
+     * @param {BigNumber} newScore The new sentiment score to associate
+     * with the conversationId and userId
+     */
     addConversationScore(conversationId, userId, newScore) {
+        // If the conversationId does not exist in this.conversationScores,
+        // initialize it
         if (!this.conversationScores.has(conversationId)) {
             this.conversationScores.set(conversationId, 
                 {
@@ -62,19 +102,28 @@ class SentimentStatisticTracker {
             newScore, 
             conversationScore.scores.length
         );
+        // Used to track overall satisfaction of the user in this specific
+        // conversation
         this.addUserScore(conversationScore.userScores, userId, newScore);
     }
 
     /**
-     * @param {string} conversationId
-     * @param {Object[]} messages
+     * Processes an array of messages for a conversation and tracks 
+     * the overall sentiment from the conversation and participants in 
+     * the conversation
+     * @param {string} conversationId The id of the conversation, 
+     * specifying the participants of the conversation as well as the 
+     * identifier for the conversation in this.conversationScores
+     * @param {Object[]} messages An array of message objects for the
+     * sentimentManager and SentimentStatTracker to process. Each
+     * member consists of
+     * -sender {string} The userId of the person who sent the message
+     * -body {string} The body of the message the sender sent
      */
     process(conversationId, messages) {
         messages.forEach(message => 
             this.sentimentManger.process(this.language, message.body)
                 .then(result => {
-                    // if (message.body.length < 1000)
-                    //     console.log(message.sender, message.body, result.score);
                     this.addScore(conversationId, message.sender, result.score);
                 })
         );
@@ -110,6 +159,12 @@ class SentimentStatisticTracker {
         return this.calcAverageSentiment(this.sentimentScores);
     }
 
+    /**
+     * @param {Map} userScores A map of userScores to check from
+     * @param {string} userId The key value to check in userScores
+     * @returns {BigNumber} The average sentiment score for the userId in 
+     * userScores
+     */
     getAverageSentimentForUser(userScores, userId) {
         return userScores.get(userId).averageScore;
     }
@@ -150,6 +205,10 @@ class SentimentStatisticTracker {
         return sentimentScore.isGreaterThan(0) ? "postive" : "negative";
     }
 
+    /**
+     * Logs relevant sentiment stats regarding overall satisfaction 
+     * calculated 
+     */
     logSentimentStats() {
         console.log("--------Average Sentiment Per Conversation--------");
         this.conversationScores.forEach((value, key) => {
@@ -176,6 +235,13 @@ class SentimentStatisticTracker {
         console.log(`Average sentiment of dataset is ${this.getSentimentVote(averageSentiment)} with a score of ${averageSentiment.toFixed()}`);
     }
 
+    /**
+     * @param {Map} userScores A map of userScores to check from
+     * @param {string} userId The key value to check in userScores
+     * @returns {string} A string to log, outputting the average sentiment
+     * of the user in the given userScores as well as the overall tone of that
+     * sentiment (negative, neutral, or positive)
+     */
     getUserSentimentStat(userScores, userId) {
         const userSentiment = this.getAverageSentimentForUser(userScores, userId);
         const userVote = this.getSentimentVote(userSentiment);
