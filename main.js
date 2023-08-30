@@ -43,9 +43,9 @@ const isJson = (file) => {
 
     feedbackStream.on("error", (error) => {
         if (error.code === "ENOENT") {
-        console.log(
-            `File ${feedbackJsonFile} does not exist, please pass a valid file`
-        );
+            console.log(
+                `File ${feedbackJsonFile} does not exist, please pass a valid file`
+            );
         } else {
             console.log(error);
         }
@@ -53,25 +53,18 @@ const isJson = (file) => {
 
     const sentiment = new SentimentStatisticTracker();
 
-    // Assumes the main JSON will only have a singular member which will
-    // be structured as an array of all feedback entries, wherein the
-    // user's written feedback will be in a member called "feedback"
-    feedbackStream.pipe(JSONStream.parse("*"))
+    // Assumes the main JSON will only have a singular member, messages,
+    // which will have separate members for sms conversations to process
+    feedbackStream.pipe(JSONStream.parse("messages"))
         .on("data", chunk => {
-            chunk.forEach(feedbackEntry => sentiment.process(feedbackEntry));
+            const conversationIds = Object.keys(chunk);
+            conversationIds.forEach(conversationId => 
+                sentiment.process(conversationId, chunk[conversationId])
+            );
         });
 
     feedbackStream
         .on("close", () => {
-            console.log("----Average Sentiment Per User--------");
-            sentiment.userScores.forEach((value, key) => {
-                const userSentiment = sentiment.getAverageSentimentForUser(key);
-
-                console.log(`User of id [${key}] has an average ${sentiment.getSentimentVote(userSentiment)} sentiment of ${userSentiment.toFixed()}`);
-
-            });
-
-            const averageSentiment = sentiment.calcOverallAverageSentiment(sentiment.sentimentScores);
-            console.log(`Average sentiment of dataset is ${sentiment.getSentimentVote(averageSentiment)} with a score of ${averageSentiment.toFixed()}`);
+            sentiment.logSentimentStats();
         })
 })();
