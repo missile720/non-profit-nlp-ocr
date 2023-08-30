@@ -6,59 +6,64 @@ class SentimentStatisticTracker {
     constructor() {
         this.sentimentManger = new SentimentManager();
         this.sentimentScores = [];
-        // Maps individual arrays for each user and 
-        // their associated sentiment scores
-        this.userScores = new Map(); 
+        // Maps each user to their overall average sentiment score
+        // from the JSON
+        this.userScores = new Map();
+        // Maps each conversation to their individual sentiment
+        // score and a map of each user's average sentiment score
+        // for that conversation
+        this.conversationScores = new Map();
         this.language = "en";
     }
 
     /**
-     * Adds a sentiment score to the tracker's computed sentimentScores,
-     * and associates the score with a user by adding that score to the
-     * user's calulcated scores then calculating that user's averageScore
-     * for sentiment
-     * @param {Number} sentimentScore A computed sentiment score
-     * @param {string} userId A string indicating the id of the user whose
-     * feedback was scord
      */
-    addScore(sentimentScore, userId) {
+    addScore(conversationId, userId, sentimentScore) {
         const newScore = new BigNumber(sentimentScore);
 
         this.sentimentScores.push(newScore);
 
-        if (!this.userScores.has(userId)) {
-            this.userScores.set(userId,
+        // if (!this.conversationScores.has(conversationId)) {
+        //     this.conversationScores.set(conversationId, null);
+        // }
+
+        this.addUserScore(this.userScores, userId, newScore);
+    }
+
+    addUserScore(userScores, userId, newScore) {
+        if (!userScores.has(userId)) {
+            userScores.set(userId,
                 {
                     scores: [],
                     averageScore: null
                 }    
-            );
+            )
         }
 
-        const userScore = this.userScores.get(userId);
+        const userScore = userScores.get(userId);
         userScore.scores.push(newScore);
         userScore.averageScore = this.calcRunningAverage(
             userScore.averageScore, newScore, userScore.scores.length
         );
     }
 
-    /**
-     * Processes a feedback entry by calculating its feedback and adding it 
-     * to the total sentimentScores calculated
-     * @param {Object} feedbackEntry An object consisting of a feedback_id,
-     * user_id, and a feedback entry, which contains a string from which we
-     * can process the sentiment of
-     */
-    process(feedbackEntry) {
-        this.sentimentManger.process(this.language, feedbackEntry.feedback)
-            .then(result => {
-                this.addScore(result.score, feedbackEntry["user_id"]);
+    addConversationScore(conversationId, userId, newScore) {
+        
+    }
 
-                console.log({
-                    ...feedbackEntry,
-                    "sentiment_analysis": result
-                });
-            });
+    /**
+     * @param {string} conversationId
+     * @param {Object[]} messages
+     */
+    process(conversationId, messages) {
+        messages.forEach(message => 
+            this.sentimentManger.process(this.language, message.body)
+                .then(result => {
+                    if (message.body.length < 1000)
+                    // console.log(message.sender, message.body, result.score);
+                    this.addScore(message.sender, message.sender, result.score);
+                })
+        );
     }
 
     /**

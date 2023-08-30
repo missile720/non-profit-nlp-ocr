@@ -17,19 +17,19 @@ const isJson = (file) => {
 // Main Driver
 (async () => {
     // --------OCR--------
-    const worker = await createWorker({
-        logger: (m) => console.log(m),
-    });
+    // const worker = await createWorker({
+    //     logger: (m) => console.log(m),
+    // });
 
-    await worker.loadLanguage("eng");
-    await worker.initialize("eng");
-    const {
-        data: { text },
-    } = await worker.recognize(
-        "https://tesseract.projectnaptha.com/img/eng_bw.png"
-    );
-    console.log("imageText: ",text);
-    await worker.terminate();
+    // await worker.loadLanguage("eng");
+    // await worker.initialize("eng");
+    // const {
+    //     data: { text },
+    // } = await worker.recognize(
+    //     "https://tesseract.projectnaptha.com/img/eng_bw.png"
+    // );
+    // console.log("imageText: ",text);
+    // await worker.terminate();
 
     // --------JSON Processing/Sentiment Analysis--------
     const feedbackJsonFile = process.argv[2];
@@ -53,12 +53,15 @@ const isJson = (file) => {
 
     const sentiment = new SentimentStatisticTracker();
 
-    // Assumes the main JSON will only have a singular member which will
-    // be structured as an array of all feedback entries, wherein the
-    // user's written feedback will be in a member called "feedback"
-    feedbackStream.pipe(JSONStream.parse("*"))
+    // Assumes the main JSON will only have a singular member, messages,
+    // which will have separate members for sms conversations to process
+    feedbackStream.pipe(JSONStream.parse("messages"))
         .on("data", chunk => {
-            chunk.forEach(feedbackEntry => sentiment.process(feedbackEntry));
+            // chunk.forEach(feedbackEntry => sentiment.process(feedbackEntry));
+            const conversationIds = Object.keys(chunk);
+            conversationIds.forEach(conversationId => 
+                sentiment.process(conversationId, chunk[conversationId])
+            );
         });
 
     feedbackStream
