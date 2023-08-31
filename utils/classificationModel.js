@@ -93,6 +93,11 @@ manager.addDocument('en', "ok", 'negative');
 })();
 
 class classificationModel {
+    /**
+     * @param {Object[]} conversation An array of messages
+     * @returns {Object[]} An array of objects that include the sentence it 
+     * analyzed as well as its classification
+     */
     static async classifyConversation(conversation) {
         const classifiedConversation = [];
 
@@ -103,7 +108,13 @@ class classificationModel {
 
         return classifiedConversation
     }
-
+    /**
+     * Separates a string that includes several sentences and analyzes
+     * each sentence separately.
+     * @param {string} input A string containing more than one sentence
+     * @returns {Object[]} An array of objects that include the sentence it 
+     * analyzed as well as its classification
+     */
     static async classifySentences(input) {
         const splitSentences = input.split(/(?<=[.?!;])\s+/);
         const classifiedSentences = [];
@@ -115,20 +126,16 @@ class classificationModel {
 
         return classifiedSentences
     }
-
+    /**
+     * @param {string} input A sentence to analyze
+     * @returns {Object} An object containing the sentence it analyzed and
+     * its classification
+     */
     static async classifySentence(input) {
         const analysis = await manager.process('en', input)
 
         return { sentence: analysis.utterance, classification: analysis.classification }
     }
 }
-
-async function main() {
-    const response = await classificationModel.classifySentences('Hi Wallace. This is your daily check-in. How are you doing today?');
-    console.log(response);
-}
-
-main();
-
 
 module.exports = classificationModel;
