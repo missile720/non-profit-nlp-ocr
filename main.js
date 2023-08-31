@@ -16,21 +16,6 @@ const isJson = (file) => {
 
 // Main Driver
 (async () => {
-    // --------OCR--------
-    const worker = await createWorker({
-        logger: (m) => console.log(m),
-    });
-
-    await worker.loadLanguage("eng");
-    await worker.initialize("eng");
-    const {
-        data: { text },
-    } = await worker.recognize(
-        "https://tesseract.projectnaptha.com/img/eng_bw.png"
-    );
-    console.log("imageText: ",text);
-    await worker.terminate();
-
     // --------JSON Processing/Sentiment Analysis--------
     const feedbackJsonFile = process.argv[2];
 
@@ -58,9 +43,17 @@ const isJson = (file) => {
     feedbackStream.pipe(JSONStream.parse("messages"))
         .on("data", chunk => {
             const conversationIds = Object.keys(chunk);
-            conversationIds.forEach(conversationId => 
+            conversationIds.forEach(conversationId => {
+                let imagesData = filterBase64Data(chunk[conversationId]);
+
+                if(imagesData.length > 0){
+                    imagesData.forEach(imageData => {
+                        performOCR(imageData);
+                    })
+                }
+
                 sentiment.process(conversationId, chunk[conversationId])
-            );
+            });
         });
 
     feedbackStream
@@ -68,3 +61,32 @@ const isJson = (file) => {
             sentiment.logSentimentStats();
         })
 })();
+
+function filterBase64Data(messages) {
+    let imagesData = [];
+    messages.forEach(message => {
+        if(message.body.startsWith("data:image")){
+            imagesData.push(message.body);
+        }
+    });
+
+    return imagesData;
+}
+
+async function performOCR(base64Image) {
+    const worker = await createWorker();
+
+    await worker.loadLanguage("eng");
+    await worker.initialize("eng");
+
+    const base64Data = base64Image.replace(/^data:image\/(png|jpeg);base64,/, "");
+    const imageBuffer = Buffer.from(base64Data, "base64");
+
+    const {
+        data: { text },
+    } = await worker.recognize(imageBuffer);
+
+    console.log("\n--------Image Text--------");
+    console.log(text);
+    await worker.terminate();
+}
