@@ -1,32 +1,41 @@
+const { split } = require('@tensorflow/tfjs');
 const { NlpManager } = require('node-nlp');
 
 const manager = new NlpManager({ languages: ['en'], forceNER: true });
 
-manager.addDocument('en', "Maybe you should", 'request');
-manager.addDocument('en', "It would be cool if", 'request');
-manager.addDocument('en', "It would be great if", 'request');
-manager.addDocument('en', "It should", 'request');
-manager.addDocument('en', "Could you", 'request');
-manager.addDocument('en', "Perhaps you", 'request');
-manager.addDocument('en', "Maybe instead", 'request');
-manager.addDocument('en', "Is it possible to", 'request');
-manager.addDocument('en', "Can you", 'request');
-manager.addDocument('en', "I'd like to request", 'request');
-manager.addDocument('en', "I need", 'request');
-manager.addDocument('en', "Please help me with", 'request');
-manager.addDocument('en', "Could you assist me in", 'request');
-manager.addDocument('en', "I'm looking for", 'request');
-manager.addDocument('en', "Would you mind", 'request');
-manager.addDocument('en', "I want you to", 'request');
-manager.addDocument('en', "I'm interested in", 'request');
-manager.addDocument('en', "Can you provide", 'request');
-manager.addDocument('en', "Could you provide more details?", 'request');
-manager.addDocument('en', "Can you explain further?", 'request');
-manager.addDocument('en', "I'd like more information about the aid.", 'request');
-manager.addDocument('en', "Could you help me understand better?", 'request');
-manager.addDocument('en', "Can you clarify something?", 'request');
-manager.addDocument('en', "I need more info on this.", 'request');
+manager.addDocument('en', "Could you make this change?", 'request');
+manager.addDocument('en', "I suggest we update this part.", 'request');
+manager.addDocument('en', "It would be cool if you could add", 'request');
+manager.addDocument('en', "It would be great if this could be improved:", 'request');
+manager.addDocument('en', "Could you consider changing", 'request');
+manager.addDocument('en', "Perhaps you could enhance", 'request');
+manager.addDocument('en', "Is it possible to modify", 'request');
+manager.addDocument('en', "Can you add functionality for", 'request');
+manager.addDocument('en', "I'd like to request a feature:", 'request');
+manager.addDocument('en', "I need this part to be updated:", 'request');
+manager.addDocument('en', "Please help me with this change:", 'request');
+manager.addDocument('en', "Could you assist me in implementing", 'request');
+manager.addDocument('en', "I'm looking for an improvement in", 'request');
+manager.addDocument('en', "Would you mind adding support for", 'request');
+manager.addDocument('en', "I want you to change", 'request');
 
+manager.addDocument('en', "Can you provide more details?", 'question');
+manager.addDocument('en', "Could you explain further?", 'question');
+manager.addDocument('en', "I'd like more information about this.", 'question');
+manager.addDocument('en', "Could you help me understand better?", 'question');
+manager.addDocument('en', "Can you clarify something for me?", 'question');
+manager.addDocument('en', "I need more info on this topic.", 'question');
+manager.addDocument('en', "Can you explain the process?", 'question');
+manager.addDocument('en', "What are the steps to do this?", 'question');
+manager.addDocument('en', "I'm curious about how to", 'question');
+manager.addDocument('en', "What's the procedure to", 'question');
+manager.addDocument('en', "Can you provide guidance on", 'question');
+manager.addDocument('en', "I'm interested in learning more about", 'question');
+manager.addDocument('en', "Can you provide insights into", 'question');
+manager.addDocument('en', "Could you share more details about", 'question');
+manager.addDocument('en', "I'm looking for information on", 'question');
+manager.addDocument('en', "Can you give me more context on", 'question');
+manager.addDocument('en', "What's the recommended way to", 'question');
 
 manager.addDocument('en', "Great job on", 'positive');
 manager.addDocument('en', "I'm impressed by", 'positive');
@@ -48,6 +57,8 @@ manager.addDocument('en', "You've been so helpful.", 'positive');
 manager.addDocument('en', "Great job sending the info.", 'positive');
 manager.addDocument('en', "You're the best.", 'positive');
 manager.addDocument('en', "I'm grateful for your assistance.", 'positive');
+manager.addDocument('en', "good", 'positive');
+manager.addDocument('en', "great", 'positive');
 
 
 manager.addDocument('en', "I'm disappointed with", 'negative');
@@ -72,33 +83,52 @@ manager.addDocument('en', "I wish there were better options.", 'negative');
 manager.addDocument('en', "I'm not satisfied with the financial aid.", 'negative');
 manager.addDocument('en', "This is frustrating.", 'negative');
 manager.addDocument('en', "These options are disappointing.", 'negative');
+manager.addDocument('en', "ok", 'negative');
 
 
 
 (async () => {
     await manager.train();
     manager.save();
-    const conversation = [
-        "Hi Wallace. This is your daily check-in. How are you doing today?",
-        "hi. im ok. just a little tired",
-        "just a little tired",
-        "I'm sorry to hear that. I hope you feel better soon.",
-        "thanks",
-        "I'm here if you need anything. Have you registered for single parent classes yet?",
-        "no. i dont think i can afford it",
-        "I understand. I'll send you some information about financial aid.",
-        "ok",
-        "hi did you send that information yet?",
-        "I'm sorry, I haven't had a chance to yet. I'll send it to you now.",
-        "ok",
-        "this is not helpful. i dont qualify for any of these. im very disappointed. i wish you offered better financial aid"
-    ];
-
-    for (message of conversation) {
-        const analysis = await manager.process('en', message)
-        console.log(analysis.utterance, analysis.classifications)
-    }
-
 })();
 
-module.exports = manager;
+class classificationModel {
+    static async classifyConversation(conversation) {
+        const classifiedConversation = [];
+
+        for (let message of conversation) {
+            const analysis = await manager.process('en', message)
+            classifiedConversation.push({ sentence: analysis.utterance, classification: analysis.classification })
+        }
+
+        return classifiedConversation
+    }
+
+    static async classifySentences(input) {
+        const splitSentences = input.split(/(?<=[.?!;])\s+/);
+        const classifiedSentences = [];
+
+        for (let sentence of splitSentences) {
+            const analysis = await manager.process('en', sentence)
+            classifiedSentences.push({ sentence: analysis.utterance, classification: analysis.classifications })
+        }
+
+        return classifiedSentences
+    }
+
+    static async classifySentence(input) {
+        const analysis = await manager.process('en', input)
+
+        return { sentence: analysis.utterance, classification: analysis.classification }
+    }
+}
+
+async function main() {
+    const response = await classificationModel.classifySentences('Hi Wallace. This is your daily check-in. How are you doing today?');
+    console.log(response);
+}
+
+main();
+
+
+module.exports = classificationModel;
