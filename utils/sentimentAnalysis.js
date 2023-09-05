@@ -31,11 +31,11 @@ class SentimentStatisticTracker {
      * -body {string} The body of the message the sender sent
     */
    process(conversationId, messages) {
-       messages.forEach(message => 
-        this.sentimentManger.process(this.language, message.body)
-        .then(result => {
-            this.addScore(conversationId, message.sender, result.score);
-        })
+        messages.forEach(message => 
+            this.sentimentManger.process(this.language, message.body)
+                .then(result => {
+                    this.addScore(conversationId, message.sender, result.score);
+                })
         );
     }
     
@@ -161,15 +161,14 @@ class SentimentStatisticTracker {
         this.addUserScore(conversationScore.userScores, userId, newScore);
     }
 
-
     /**
      * Calculates the running average of a set of user scores using the 
      * Welford's Method 
      * (https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
      * @param {BigNumber} mk The current running average
-     * @param {BigNumber} xk The new score to add to a running averag
+     * @param {BigNumber} xk The new score to add to a running average
      * @param {Number} k The length of the scores to calculate from
-     * @returns 
+     * @returns {BigNumber} The running average after adding xk
      */
     calcRunningAverage(mk, xk, k) {
         // Start of the running average calulation, simply return the
