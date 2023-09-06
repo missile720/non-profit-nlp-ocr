@@ -17,10 +17,9 @@ function isJson(file) {
 // Processing Functions
 async function processMessage(sentiment, conversationId, message) {
     const imageData = filterBase64Data(message.body);
+    const imageContent = imageData && await performOCR(imageData);
 
-    if (imageData) {
-        const imageContent = await performOCR(imageData);
-    } else {
+    if (!imageContent) {
         sentiment.process(conversationId, message);
     }
 }
@@ -91,7 +90,7 @@ async function performOCR(base64Image) {
         data: { text },
     } = await worker.recognize(imageBuffer);
 
-    console.log("\n--------Image Text--------");
-    console.log(text);
     await worker.terminate();
+
+    return text;
 }
