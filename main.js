@@ -5,13 +5,24 @@ const { createWorker } = require("tesseract.js");
 
 const SentimentStatisticTracker = require("./utils/sentimentAnalysis.js");
 
-// File Utils
+// File Utility Functions
 /**
  * @param {string} file A string specifying a file
  * @returns {bool} If a file is a JSON file
  */
-const isJson = (file) => {
+function isJson(file) {
     return path.extname(file).toLowerCase() === ".json";
+}
+
+// Processing Functions
+async function processMessage(sentiment, conversationId, message) {
+    const imageData = filterBase64Data(message.body);
+
+    if (imageData) {
+        const imageContent = await performOCR(imageData);
+    } else {
+        sentiment.process(conversationId, message);
+    }
 }
 
 // Main Driver
@@ -37,40 +48,34 @@ const isJson = (file) => {
     });
 
     const sentiment = new SentimentStatisticTracker();
+    console.log(`${feedbackJsonFile} processing has begun...`);
 
     // Assumes the main JSON will only have a singular member, messages,
     // which will have separate members for sms conversations to process
     feedbackStream.pipe(JSONStream.parse("messages"))
-        .on("data", chunk => {
+        .on("data", async chunk => {
             const conversationIds = Object.keys(chunk);
-            conversationIds.forEach(conversationId => {
-                let imagesData = filterBase64Data(chunk[conversationId]);
 
-                if(imagesData.length > 0){
-                    imagesData.forEach(imageData => {
-                        performOCR(imageData);
-                    })
-                }
+            await Promise.all(
+                conversationIds.map(async conversationId => {
+                    const messages = chunk[conversationId];
 
-                sentiment.process(conversationId, chunk[conversationId])
-            });
-        });
+                    await Promise.all(messages.map(message => 
+                        processMessage(sentiment, conversationId, message)
+                    ));
+                })
+            );
 
-    feedbackStream
-        .on("close", () => {
             sentiment.logSentimentStats();
-        })
+        });
 })();
 
-function filterBase64Data(messages) {
-    let imagesData = [];
-    messages.forEach(message => {
-        if(message.body.startsWith("data:image")){
-            imagesData.push(message.body);
-        }
-    });
+function filterBase64Data(messageContent) {
+    if (messageContent.startsWith("data:image")){
+        return messageContent;
+    }
 
-    return imagesData;
+    return null;
 }
 
 async function performOCR(base64Image) {

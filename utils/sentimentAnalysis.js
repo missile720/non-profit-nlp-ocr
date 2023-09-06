@@ -24,19 +24,15 @@ class SentimentStatisticTracker {
      * @param {string} conversationId The id of the conversation, 
      * specifying the participants of the conversation as well as the 
      * identifier for the conversation in this.conversationScores
-     * @param {Object[]} messages An array of message objects for the
-     * sentimentManager and SentimentStatTracker to process. Each
-     * member consists of
+     * @param {Object} message An object containing:
      * -sender {string} The userId of the person who sent the message
      * -body {string} The body of the message the sender sent
-    */
-   process(conversationId, messages) {
-        messages.forEach(message => 
-            this.sentimentManger.process(this.language, message.body)
-                .then(result => {
-                    this.addScore(conversationId, message.sender, result.score);
-                })
-        );
+     */
+   process(conversationId, message) {
+        this.sentimentManger.process(this.language, message.body)
+            .then(result => {
+                this.addScore(conversationId, message.sender, result.score);
+            });
     }
     
     /**
