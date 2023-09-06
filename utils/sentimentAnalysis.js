@@ -18,7 +18,7 @@ class SentimentStatisticTracker {
     
     // --------MAIN METHODS--------
     /**
-     * Processes an array of messages for a conversation and tracks 
+     * Processes a message from a conversation and tracks 
      * the overall sentiment from the conversation and participants in 
      * the conversation
      * @param {string} conversationId The id of the conversation, 

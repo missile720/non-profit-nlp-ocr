@@ -14,7 +14,54 @@ function isJson(file) {
     return path.extname(file).toLowerCase() === ".json";
 }
 
+// OCR Utility Functions
+/**
+ * @param {string} messageContent A string that might contain base64 image data
+ * @returns {string} A string if the messageContent was base64 image data or null
+ * otherwise 
+ */
+function filterBase64Data(messageContent) {
+    if (messageContent.startsWith("data:image")){
+        return messageContent;
+    }
+
+    return null;
+}
+
+/**
+ * @param {string} base64Image A image in base64
+ * @returns {string} The text content of the image
+ */
+async function performOCR(base64Image) {
+    const worker = await createWorker();
+
+    await worker.loadLanguage("eng");
+    await worker.initialize("eng");
+
+    const base64Data = base64Image.replace(/^data:image\/(png|jpeg);base64,/, "");
+    const imageBuffer = Buffer.from(base64Data, "base64");
+
+    const {
+        data: { text },
+    } = await worker.recognize(imageBuffer);
+
+    await worker.terminate();
+
+    return text;
+}
+
 // Processing Functions
+/**
+ * Processes each message passed by extracting image content with OCR
+ * if possible and performing sentiment analysis
+ * @param {SentimentStatisticTracker} sentiment The sentiment analysis
+ * object used for tracking sentiment stats 
+ * @param {string} conversationId The id for the conversation a message
+ * was sent in
+ * @param {Object} message An object containing:
+ * -sender {string} The userId of the person who sent the message
+ * -body {string} The body of the message the sender sent
+ */
 async function processMessage(sentiment, conversationId, message) {
     const imageData = filterBase64Data(message.body);
     const imageContent = imageData && await performOCR(imageData);
@@ -69,28 +116,3 @@ async function processMessage(sentiment, conversationId, message) {
         });
 })();
 
-function filterBase64Data(messageContent) {
-    if (messageContent.startsWith("data:image")){
-        return messageContent;
-    }
-
-    return null;
-}
-
-async function performOCR(base64Image) {
-    const worker = await createWorker();
-
-    await worker.loadLanguage("eng");
-    await worker.initialize("eng");
-
-    const base64Data = base64Image.replace(/^data:image\/(png|jpeg);base64,/, "");
-    const imageBuffer = Buffer.from(base64Data, "base64");
-
-    const {
-        data: { text },
-    } = await worker.recognize(imageBuffer);
-
-    await worker.terminate();
-
-    return text;
-}
