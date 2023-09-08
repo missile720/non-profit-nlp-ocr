@@ -18,25 +18,21 @@ class SentimentStatisticTracker {
     
     // --------MAIN METHODS--------
     /**
-     * Processes an array of messages for a conversation and tracks 
+     * Processes a message from a conversation and tracks 
      * the overall sentiment from the conversation and participants in 
      * the conversation
      * @param {string} conversationId The id of the conversation, 
      * specifying the participants of the conversation as well as the 
      * identifier for the conversation in this.conversationScores
-     * @param {Object[]} messages An array of message objects for the
-     * sentimentManager and SentimentStatTracker to process. Each
-     * member consists of
+     * @param {Object} message An object containing:
      * -sender {string} The userId of the person who sent the message
      * -body {string} The body of the message the sender sent
-    */
-   process(conversationId, messages) {
-       messages.forEach(message => 
+     */
+   process(conversationId, message) {
         this.sentimentManger.process(this.language, message.body)
-        .then(result => {
-            this.addScore(conversationId, message.sender, result.score);
-        })
-        );
+            .then(result => {
+                this.addScore(conversationId, message.sender, result.score);
+            });
     }
     
     /**
@@ -161,15 +157,14 @@ class SentimentStatisticTracker {
         this.addUserScore(conversationScore.userScores, userId, newScore);
     }
 
-
     /**
      * Calculates the running average of a set of user scores using the 
      * Welford's Method 
      * (https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
      * @param {BigNumber} mk The current running average
-     * @param {BigNumber} xk The new score to add to a running averag
+     * @param {BigNumber} xk The new score to add to a running average
      * @param {Number} k The length of the scores to calculate from
-     * @returns 
+     * @returns {BigNumber} The running average after adding xk
      */
     calcRunningAverage(mk, xk, k) {
         // Start of the running average calulation, simply return the
