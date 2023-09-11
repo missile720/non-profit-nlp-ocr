@@ -1,0 +1,2537 @@
+{
+  "settings": {
+    "languages": [
+      "en",
+      "sp"
+    ],
+    "forceNER": true
+  },
+  "nluManager": {
+    "settings": {},
+    "languages": [
+      "en",
+      "sp"
+    ],
+    "intentDomains": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "language": "en",
+          "useNoneFeature": true,
+          "config": {
+            "activation": "leaky-relu",
+            "hiddenLayers": [],
+            "iterations": 20000,
+            "learningRate": 0.7,
+            "errorThresh": 0.00005,
+            "momentum": 0.5,
+            "deltaErrorThresh": 0.000001,
+            "maxDecimals": 9,
+            "leakyReluAlpha": 0.08,
+            "timeout": 120000
+          }
+        },
+        "language": "en",
+        "nluClassName": "BrainNLU",
+        "useMasterDomain": true,
+        "trainByDomain": false,
+        "keepStopwords": true,
+        "stemDict": {
+          "chang,could,make,this,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "i,part,suggest,this,updat,we": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "add,be,cool,could,if,it,would,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "be,be,could,great,if,improv,it,this,would": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "chang,consid,could,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "could,enhanc,perhap,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "is,it,modifi,possibl,to": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "add,can,for,function,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "a,featur,had,i,like,request,to": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "be,i,need,part,this,to,updat": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "chang,help,me,pleas,this,with": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "assist,could,implement,in,me,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "am,an,for,i,improv,in,look": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "ad,for,mind,support,would,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "chang,i,to,want,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "should,total,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "awesom,be,had,if,it": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "gotta,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "can,like,pleas,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "could,like,mayb,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "is,it,like,possibl,to": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "could,hook,me,up,with,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "had,i,love,see,some,to": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "be,i,more,need,this,to": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "help,me,out,with": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "assist,could,in,like,me,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "am,i,into,realli": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "ad,mind,would,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "i,it,make,to,want,you": {
+            "domain": "default",
+            "intent": "request"
+          },
+          "can,detail,more,provid,you": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "could,explain,further,you": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "about,had,i,inform,like,more,this": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "better,could,help,me,understand,you": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "can,clarifi,for,me,someth,you": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "i,info,more,need,on,this,topic": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "can,explain,process,the,you": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "are,do,step,the,this,to,what": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "about,am,curious,how,i,to": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "is,procedur,the,to,what": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "can,guidanc,on,provid,you": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "about,am,i,in,interest,learn,more": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "can,insight,into,provid,you": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "about,could,detail,more,share,you": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "am,for,i,inform,look,on": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "can,context,give,me,more,on,you": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "is,recommend,the,to,way,what": {
+            "domain": "default",
+            "intent": "question"
+          },
+          "great,job,on": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "am,by,i,impress": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "done,well,with": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "i,love": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "amaz,are,at,you": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "for,kudo": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "excel,on,work": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "am,for,grate,i": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "an,awesom,done,have,job,on,you": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "am,i,pleas,so,with": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "bravo,for": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "appreci,i,on,work,your": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "effort,on,your": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "exceed,expect,have,my,with,you": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "for,support,thank,your": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "appreci,help,i,your": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "been,have,help,so,you": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "great,info,job,send,the": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "are,best,the,you": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "am,assist,for,grate,i,your": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "good": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "great": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "deal,frustrat,is,this,to,with": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "am,disappoint,i,outcom,the,with": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "am,i,not,satisfi,servic,this,with": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "am,annoy,by,i,situat,this": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "am,happi,i,not,qualiti,the,with": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "about,am,concern,i,issu,this": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "bother,is,me,realli,this": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "am,i,not,pleas,respons,the,with": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "am,by,down,i,lack,let,of,support,the": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "expect,i,is,not,this,what": {
+            "domain": "default",
+            "intent": "negative"
+          }
+        },
+        "intentDict": {
+          "request": "default",
+          "question": "default",
+          "positive": "default",
+          "negative": "default"
+        },
+        "useStemDict": true,
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "language": "en",
+              "useNoneFeature": true,
+              "config": {
+                "activation": "leaky-relu",
+                "hiddenLayers": [],
+                "iterations": 20000,
+                "learningRate": 0.7,
+                "errorThresh": 0.00005,
+                "momentum": 0.5,
+                "deltaErrorThresh": 0.000001,
+                "maxDecimals": 9,
+                "leakyReluAlpha": 0.08,
+                "timeout": 120000
+              }
+            },
+            "language": "en",
+            "keepStopwords": true,
+            "docs": [
+              {
+                "intent": "request",
+                "tokens": [
+                  "could",
+                  "you",
+                  "make",
+                  "this",
+                  "chang"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "i",
+                  "suggest",
+                  "we",
+                  "updat",
+                  "this",
+                  "part"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "it",
+                  "would",
+                  "be",
+                  "cool",
+                  "if",
+                  "you",
+                  "could",
+                  "add"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "it",
+                  "would",
+                  "be",
+                  "great",
+                  "if",
+                  "this",
+                  "could",
+                  "be",
+                  "improv"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "could",
+                  "you",
+                  "consid",
+                  "chang"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "perhap",
+                  "you",
+                  "could",
+                  "enhanc"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "is",
+                  "it",
+                  "possibl",
+                  "to",
+                  "modifi"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "can",
+                  "you",
+                  "add",
+                  "function",
+                  "for"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "i",
+                  "had",
+                  "like",
+                  "to",
+                  "request",
+                  "a",
+                  "featur"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "i",
+                  "need",
+                  "this",
+                  "part",
+                  "to",
+                  "be",
+                  "updat"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "pleas",
+                  "help",
+                  "me",
+                  "with",
+                  "this",
+                  "chang"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "could",
+                  "you",
+                  "assist",
+                  "me",
+                  "in",
+                  "implement"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "i",
+                  "am",
+                  "look",
+                  "for",
+                  "an",
+                  "improv",
+                  "in"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "would",
+                  "you",
+                  "mind",
+                  "ad",
+                  "support",
+                  "for"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "i",
+                  "want",
+                  "you",
+                  "to",
+                  "chang"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "you",
+                  "should",
+                  "total"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "it",
+                  "had",
+                  "be",
+                  "awesom",
+                  "if"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "you",
+                  "gotta"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "can",
+                  "you",
+                  "like",
+                  "pleas"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "mayb",
+                  "you",
+                  "could",
+                  "like"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "is",
+                  "it",
+                  "like",
+                  "possibl",
+                  "to"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "could",
+                  "you",
+                  "hook",
+                  "me",
+                  "up",
+                  "with"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "i",
+                  "had",
+                  "love",
+                  "to",
+                  "see",
+                  "some"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "i",
+                  "need",
+                  "this",
+                  "to",
+                  "be",
+                  "more"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "help",
+                  "me",
+                  "out",
+                  "with"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "could",
+                  "you",
+                  "like",
+                  "assist",
+                  "me",
+                  "in"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "i",
+                  "am",
+                  "realli",
+                  "into"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "would",
+                  "you",
+                  "mind",
+                  "ad"
+                ]
+              },
+              {
+                "intent": "request",
+                "tokens": [
+                  "i",
+                  "want",
+                  "you",
+                  "to",
+                  "make",
+                  "it"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "can",
+                  "you",
+                  "provid",
+                  "more",
+                  "detail"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "could",
+                  "you",
+                  "explain",
+                  "further"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "i",
+                  "had",
+                  "like",
+                  "more",
+                  "inform",
+                  "about",
+                  "this"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "could",
+                  "you",
+                  "help",
+                  "me",
+                  "understand",
+                  "better"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "can",
+                  "you",
+                  "clarifi",
+                  "someth",
+                  "for",
+                  "me"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "i",
+                  "need",
+                  "more",
+                  "info",
+                  "on",
+                  "this",
+                  "topic"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "can",
+                  "you",
+                  "explain",
+                  "the",
+                  "process"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "what",
+                  "are",
+                  "the",
+                  "step",
+                  "to",
+                  "do",
+                  "this"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "i",
+                  "am",
+                  "curious",
+                  "about",
+                  "how",
+                  "to"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "procedur",
+                  "to"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "can",
+                  "you",
+                  "provid",
+                  "guidanc",
+                  "on"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "i",
+                  "am",
+                  "interest",
+                  "in",
+                  "learn",
+                  "more",
+                  "about"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "can",
+                  "you",
+                  "provid",
+                  "insight",
+                  "into"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "could",
+                  "you",
+                  "share",
+                  "more",
+                  "detail",
+                  "about"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "i",
+                  "am",
+                  "look",
+                  "for",
+                  "inform",
+                  "on"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "can",
+                  "you",
+                  "give",
+                  "me",
+                  "more",
+                  "context",
+                  "on"
+                ]
+              },
+              {
+                "intent": "question",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "recommend",
+                  "way",
+                  "to"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "great",
+                  "job",
+                  "on"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "i",
+                  "am",
+                  "impress",
+                  "by"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "well",
+                  "done",
+                  "with"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "i",
+                  "love"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "you",
+                  "are",
+                  "amaz",
+                  "at"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "kudo",
+                  "for"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "excel",
+                  "work",
+                  "on"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "i",
+                  "am",
+                  "grate",
+                  "for"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "you",
+                  "have",
+                  "done",
+                  "an",
+                  "awesom",
+                  "job",
+                  "on"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "i",
+                  "am",
+                  "so",
+                  "pleas",
+                  "with"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "bravo",
+                  "for"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "i",
+                  "appreci",
+                  "your",
+                  "work",
+                  "on"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "your",
+                  "effort",
+                  "on"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "you",
+                  "have",
+                  "exceed",
+                  "my",
+                  "expect",
+                  "with"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "thank",
+                  "for",
+                  "your",
+                  "support"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "i",
+                  "appreci",
+                  "your",
+                  "help"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "you",
+                  "have",
+                  "been",
+                  "so",
+                  "help"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "great",
+                  "job",
+                  "send",
+                  "the",
+                  "info"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "you",
+                  "are",
+                  "the",
+                  "best"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "i",
+                  "am",
+                  "grate",
+                  "for",
+                  "your",
+                  "assist"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "good"
+                ]
+              },
+              {
+                "intent": "positive",
+                "tokens": [
+                  "great"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "this",
+                  "is",
+                  "frustrat",
+                  "to",
+                  "deal",
+                  "with"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "i",
+                  "am",
+                  "disappoint",
+                  "with",
+                  "the",
+                  "outcom"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "i",
+                  "am",
+                  "not",
+                  "satisfi",
+                  "with",
+                  "this",
+                  "servic"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "i",
+                  "am",
+                  "annoy",
+                  "by",
+                  "this",
+                  "situat"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "i",
+                  "am",
+                  "not",
+                  "happi",
+                  "with",
+                  "the",
+                  "qualiti"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "i",
+                  "am",
+                  "concern",
+                  "about",
+                  "this",
+                  "issu"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "this",
+                  "is",
+                  "realli",
+                  "bother",
+                  "me"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "i",
+                  "am",
+                  "not",
+                  "pleas",
+                  "with",
+                  "the",
+                  "respons"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "i",
+                  "am",
+                  "let",
+                  "down",
+                  "by",
+                  "the",
+                  "lack",
+                  "of",
+                  "support"
+                ]
+              },
+              {
+                "intent": "negative",
+                "tokens": [
+                  "this",
+                  "is",
+                  "not",
+                  "what",
+                  "i",
+                  "expect"
+                ]
+              }
+            ],
+            "features": {
+              "could": 12,
+              "you": 30,
+              "make": 2,
+              "this": 15,
+              "chang": 4,
+              "i": 29,
+              "suggest": 1,
+              "we": 1,
+              "updat": 2,
+              "part": 2,
+              "it": 6,
+              "would": 4,
+              "be": 6,
+              "cool": 1,
+              "if": 3,
+              "add": 2,
+              "great": 4,
+              "improv": 2,
+              "consid": 1,
+              "perhap": 1,
+              "enhanc": 1,
+              "is": 7,
+              "possibl": 2,
+              "to": 13,
+              "modifi": 1,
+              "can": 8,
+              "function": 1,
+              "for": 10,
+              "had": 4,
+              "like": 6,
+              "request": 1,
+              "a": 1,
+              "featur": 1,
+              "need": 3,
+              "pleas": 4,
+              "help": 5,
+              "me": 9,
+              "with": 11,
+              "assist": 3,
+              "in": 4,
+              "implement": 1,
+              "am": 16,
+              "look": 2,
+              "an": 2,
+              "mind": 2,
+              "ad": 2,
+              "support": 3,
+              "want": 2,
+              "should": 1,
+              "total": 1,
+              "awesom": 2,
+              "gotta": 1,
+              "mayb": 1,
+              "hook": 1,
+              "up": 1,
+              "love": 2,
+              "see": 1,
+              "some": 1,
+              "more": 7,
+              "out": 1,
+              "realli": 2,
+              "into": 2,
+              "provid": 3,
+              "detail": 2,
+              "explain": 2,
+              "further": 1,
+              "inform": 2,
+              "about": 5,
+              "understand": 1,
+              "better": 1,
+              "clarifi": 1,
+              "someth": 1,
+              "info": 2,
+              "on": 9,
+              "topic": 1,
+              "the": 10,
+              "process": 1,
+              "what": 4,
+              "are": 3,
+              "step": 1,
+              "do": 1,
+              "curious": 1,
+              "how": 1,
+              "procedur": 1,
+              "guidanc": 1,
+              "interest": 1,
+              "learn": 1,
+              "insight": 1,
+              "share": 1,
+              "give": 1,
+              "context": 1,
+              "recommend": 1,
+              "way": 1,
+              "job": 3,
+              "impress": 1,
+              "by": 3,
+              "well": 1,
+              "done": 2,
+              "amaz": 1,
+              "at": 1,
+              "kudo": 1,
+              "excel": 1,
+              "work": 2,
+              "grate": 2,
+              "have": 3,
+              "so": 2,
+              "bravo": 1,
+              "appreci": 2,
+              "your": 5,
+              "effort": 1,
+              "exceed": 1,
+              "my": 1,
+              "expect": 2,
+              "thank": 1,
+              "been": 1,
+              "send": 1,
+              "best": 1,
+              "good": 1,
+              "frustrat": 1,
+              "deal": 1,
+              "disappoint": 1,
+              "outcom": 1,
+              "not": 4,
+              "satisfi": 1,
+              "servic": 1,
+              "annoy": 1,
+              "situat": 1,
+              "happi": 1,
+              "qualiti": 1,
+              "concern": 1,
+              "issu": 1,
+              "bother": 1,
+              "respons": 1,
+              "let": 1,
+              "down": 1,
+              "lack": 1,
+              "of": 1
+            },
+            "isEditing": false,
+            "className": "BrainNLU",
+            "classifier": {
+              "className": "BrainClassifier",
+              "settings": {
+                "language": "en",
+                "useNoneFeature": true,
+                "config": {
+                  "activation": "leaky-relu",
+                  "hiddenLayers": [],
+                  "iterations": 20000,
+                  "learningRate": 0.7,
+                  "errorThresh": 0.00005,
+                  "momentum": 0.5,
+                  "deltaErrorThresh": 0.000001,
+                  "maxDecimals": 9,
+                  "leakyReluAlpha": 0.08,
+                  "timeout": 120000
+                }
+              },
+              "labels": [],
+              "network": {
+                "sizes": [
+                  138,
+                  5
+                ],
+                "layers": [
+                  {
+                    "could": {},
+                    "you": {},
+                    "make": {},
+                    "this": {},
+                    "chang": {},
+                    "i": {},
+                    "suggest": {},
+                    "we": {},
+                    "updat": {},
+                    "part": {},
+                    "it": {},
+                    "would": {},
+                    "be": {},
+                    "cool": {},
+                    "if": {},
+                    "add": {},
+                    "great": {},
+                    "improv": {},
+                    "consid": {},
+                    "perhap": {},
+                    "enhanc": {},
+                    "is": {},
+                    "possibl": {},
+                    "to": {},
+                    "modifi": {},
+                    "can": {},
+                    "function": {},
+                    "for": {},
+                    "had": {},
+                    "like": {},
+                    "request": {},
+                    "a": {},
+                    "featur": {},
+                    "need": {},
+                    "pleas": {},
+                    "help": {},
+                    "me": {},
+                    "with": {},
+                    "assist": {},
+                    "in": {},
+                    "implement": {},
+                    "am": {},
+                    "look": {},
+                    "an": {},
+                    "mind": {},
+                    "ad": {},
+                    "support": {},
+                    "want": {},
+                    "should": {},
+                    "total": {},
+                    "awesom": {},
+                    "gotta": {},
+                    "mayb": {},
+                    "hook": {},
+                    "up": {},
+                    "love": {},
+                    "see": {},
+                    "some": {},
+                    "more": {},
+                    "out": {},
+                    "realli": {},
+                    "into": {},
+                    "provid": {},
+                    "detail": {},
+                    "explain": {},
+                    "further": {},
+                    "inform": {},
+                    "about": {},
+                    "understand": {},
+                    "better": {},
+                    "clarifi": {},
+                    "someth": {},
+                    "info": {},
+                    "on": {},
+                    "topic": {},
+                    "the": {},
+                    "process": {},
+                    "what": {},
+                    "are": {},
+                    "step": {},
+                    "do": {},
+                    "curious": {},
+                    "how": {},
+                    "procedur": {},
+                    "guidanc": {},
+                    "interest": {},
+                    "learn": {},
+                    "insight": {},
+                    "share": {},
+                    "give": {},
+                    "context": {},
+                    "recommend": {},
+                    "way": {},
+                    "job": {},
+                    "impress": {},
+                    "by": {},
+                    "well": {},
+                    "done": {},
+                    "amaz": {},
+                    "at": {},
+                    "kudo": {},
+                    "excel": {},
+                    "work": {},
+                    "grate": {},
+                    "have": {},
+                    "so": {},
+                    "bravo": {},
+                    "appreci": {},
+                    "your": {},
+                    "effort": {},
+                    "exceed": {},
+                    "my": {},
+                    "expect": {},
+                    "thank": {},
+                    "been": {},
+                    "send": {},
+                    "best": {},
+                    "good": {},
+                    "frustrat": {},
+                    "deal": {},
+                    "disappoint": {},
+                    "outcom": {},
+                    "not": {},
+                    "satisfi": {},
+                    "servic": {},
+                    "annoy": {},
+                    "situat": {},
+                    "happi": {},
+                    "qualiti": {},
+                    "concern": {},
+                    "issu": {},
+                    "bother": {},
+                    "respons": {},
+                    "let": {},
+                    "down": {},
+                    "lack": {},
+                    "of": {},
+                    "nonefeature": {}
+                  },
+                  {
+                    "request": {
+                      "bias": 1.525100344,
+                      "weights": {
+                        "could": 0.208288014,
+                        "you": 4.71996212,
+                        "make": 0.946074128,
+                        "this": 0.503075063,
+                        "chang": 4.593497753,
+                        "i": 0.064885274,
+                        "suggest": 4.732705593,
+                        "we": 4.732705593,
+                        "updat": 0.3805902,
+                        "part": 0.3805902,
+                        "it": 3.259132147,
+                        "would": 0.498111904,
+                        "be": 3.65747571,
+                        "cool": -3.208649158,
+                        "if": 0.023337709,
+                        "add": 1.899671793,
+                        "great": -1.394090891,
+                        "improv": 4.140847683,
+                        "consid": 1.181882501,
+                        "perhap": 2.999394655,
+                        "enhanc": 2.999394655,
+                        "is": -3.342759132,
+                        "possibl": 4.260457993,
+                        "to": 3.481966496,
+                        "modifi": 3.121632814,
+                        "can": -0.0812364,
+                        "function": 5.108320713,
+                        "for": -0.827058673,
+                        "had": 2.744848013,
+                        "like": 3.516247511,
+                        "request": 0.344429433,
+                        "a": 0.344429433,
+                        "featur": 0.344429433,
+                        "need": 2.629448414,
+                        "pleas": 2.725702286,
+                        "help": 2.699029446,
+                        "me": -0.491150767,
+                        "with": 0.967888653,
+                        "assist": -0.009058717,
+                        "in": 2.972711325,
+                        "implement": 3.644863605,
+                        "am": 0.145062894,
+                        "look": 2.21000123,
+                        "an": 2.273692846,
+                        "mind": 2.796403885,
+                        "ad": 2.796403885,
+                        "support": 1.136167049,
+                        "want": -1.613834143,
+                        "should": 3.16358757,
+                        "total": 3.16358757,
+                        "awesom": 1.364838958,
+                        "gotta": 6.297996998,
+                        "mayb": 2.744980335,
+                        "hook": 2.866767168,
+                        "up": 2.866767168,
+                        "love": -1.558495522,
+                        "see": 3.178706884,
+                        "some": 3.178706884,
+                        "more": 0.554418981,
+                        "out": 7.716945171,
+                        "realli": 5.663496017,
+                        "into": 4.981492996,
+                        "provid": -6.6336689,
+                        "detail": -2.121477842,
+                        "explain": -4.509097099,
+                        "further": -4.382332802,
+                        "inform": -4.120406151,
+                        "about": -4.846637726,
+                        "understand": -4.791741371,
+                        "better": -4.791741371,
+                        "clarifi": -3.513940096,
+                        "someth": -3.513940096,
+                        "info": -1.004690766,
+                        "on": -4.338660717,
+                        "topic": -1.004690766,
+                        "the": -3.311045408,
+                        "process": -0.126764387,
+                        "what": -2.332242489,
+                        "are": -3.119508505,
+                        "step": -1.127891064,
+                        "do": -1.127891064,
+                        "curious": -1.423958182,
+                        "how": -1.423958182,
+                        "procedur": -0.893848062,
+                        "guidanc": -0.071108192,
+                        "interest": -0.248713657,
+                        "learn": -0.248713657,
+                        "insight": -4.515128136,
+                        "share": -0.074046843,
+                        "give": -0.957034409,
+                        "context": -0.957034409,
+                        "recommend": -0.310503036,
+                        "way": -0.310503036,
+                        "job": -1.279974461,
+                        "impress": -1.422672749,
+                        "by": -1.696080327,
+                        "well": -1.413033247,
+                        "done": -2.369826317,
+                        "amaz": -1.763264418,
+                        "at": -1.763264418,
+                        "kudo": -2.091120481,
+                        "excel": -0.005371899,
+                        "work": -0.005371899,
+                        "grate": -1.976480365,
+                        "have": -3.14926672,
+                        "so": -5.464199066,
+                        "bravo": -1.700005889,
+                        "appreci": -1.514511466,
+                        "your": -2.788917065,
+                        "exceed": -1.450771332,
+                        "my": -1.450771332,
+                        "expect": -1.450771332,
+                        "thank": -1.274406075,
+                        "been": -0.741702795,
+                        "best": -0.228353158,
+                        "good": -1.57242918,
+                        "frustrat": -2.56573844,
+                        "deal": -2.56573844,
+                        "not": -1.493819356,
+                        "satisfi": -0.870131493,
+                        "servic": -0.870131493,
+                        "annoy": -0.273408592,
+                        "situat": -0.273408592,
+                        "bother": -3.833124638,
+                        "respons": -0.623687685,
+                        "nonefeature": -1.492155552
+                      }
+                    },
+                    "question": {
+                      "bias": -1.202519604,
+                      "weights": {
+                        "could": 2.279300451,
+                        "you": 0.660444856,
+                        "make": -1.089909792,
+                        "this": -1.274105906,
+                        "chang": -1.871650815,
+                        "i": -1.071980238,
+                        "updat": -0.463216543,
+                        "part": -0.463216543,
+                        "it": -0.917987347,
+                        "would": -0.3581554,
+                        "be": -4.267591953,
+                        "cool": -0.340993196,
+                        "if": -0.3581554,
+                        "add": -2.314645052,
+                        "great": -1.790684938,
+                        "improv": -0.726028979,
+                        "consid": -0.636124671,
+                        "perhap": -1.032961726,
+                        "enhanc": -1.032961726,
+                        "is": 0.255598128,
+                        "possibl": -0.559831977,
+                        "to": 2.183551788,
+                        "modifi": -0.519746184,
+                        "can": 3.48234129,
+                        "function": -1.973652244,
+                        "for": 0.895129263,
+                        "had": 1.065773845,
+                        "like": -1.431331396,
+                        "request": -1.207742691,
+                        "a": -1.207742691,
+                        "featur": -1.207742691,
+                        "need": 0.145797402,
+                        "pleas": -2.174586058,
+                        "help": 1.839855313,
+                        "me": 2.275154591,
+                        "with": -3.17552352,
+                        "assist": -1.963497639,
+                        "in": -0.717716277,
+                        "implement": -1.583865881,
+                        "am": 1.184194922,
+                        "look": 2.606738806,
+                        "an": -1.161256433,
+                        "support": -0.389883041,
+                        "want": -0.145616353,
+                        "awesom": -0.452389926,
+                        "mayb": -0.563468277,
+                        "hook": -0.438268602,
+                        "up": -0.438268602,
+                        "love": -1.602265596,
+                        "see": -0.423532665,
+                        "some": -0.423532665,
+                        "more": 4.83634758,
+                        "out": -0.158600643,
+                        "realli": -1.285828829,
+                        "into": 2.390664339,
+                        "provid": 4.369500637,
+                        "detail": 0.388795167,
+                        "explain": 5.704313278,
+                        "further": 5.071037769,
+                        "inform": 6.012653351,
+                        "about": 5.577224255,
+                        "understand": 3.330640793,
+                        "better": 3.330640793,
+                        "clarifi": 3.203824759,
+                        "someth": 3.203824759,
+                        "info": 2.945469618,
+                        "on": 4.074378967,
+                        "topic": 4.055230141,
+                        "the": 3.233698845,
+                        "process": 0.633277297,
+                        "what": 5.339915752,
+                        "are": -0.882800698,
+                        "step": 2.552282095,
+                        "do": 2.552282095,
+                        "curious": 2.918891668,
+                        "how": 2.918891668,
+                        "procedur": 2.70150876,
+                        "guidanc": 1.150008678,
+                        "interest": 1.954648733,
+                        "learn": 1.954648733,
+                        "insight": 2.790707588,
+                        "share": -0.03998749,
+                        "give": -0.813158274,
+                        "context": -0.813158274,
+                        "recommend": 1.343442559,
+                        "way": 1.343442559,
+                        "job": -2.225912571,
+                        "impress": -1.252842188,
+                        "by": -1.770940185,
+                        "well": -0.393568903,
+                        "done": -0.845958829,
+                        "amaz": -1.233699679,
+                        "at": -1.233699679,
+                        "kudo": -0.843390703,
+                        "excel": -1.273379683,
+                        "work": -1.597831368,
+                        "grate": -1.387752295,
+                        "have": -1.537652493,
+                        "so": -1.00769639,
+                        "bravo": -0.564670205,
+                        "appreci": -0.886074364,
+                        "your": -1.951376915,
+                        "effort": -0.919333696,
+                        "exceed": -0.314701259,
+                        "my": -0.314701259,
+                        "expect": -1.57202363,
+                        "thank": -0.145969972,
+                        "been": -0.770561159,
+                        "send": -1.109764695,
+                        "best": -2.201385975,
+                        "good": -0.114842087,
+                        "frustrat": -1.086415291,
+                        "deal": -1.086415291,
+                        "disappoint": -0.4103055,
+                        "outcom": -0.4103055,
+                        "not": -1.393851519,
+                        "satisfi": -0.105082482,
+                        "servic": -0.105082482,
+                        "annoy": -0.274184912,
+                        "situat": -0.274184912,
+                        "happi": -0.031446613,
+                        "qualiti": -0.031446613,
+                        "concern": -1.953375101,
+                        "issu": -1.953375101,
+                        "bother": -0.88578397,
+                        "let": -0.243913084,
+                        "down": -0.243913084,
+                        "lack": -0.243913084,
+                        "of": -0.243913084,
+                        "nonefeature": 3.36e-7
+                      }
+                    },
+                    "positive": {
+                      "bias": 6.739990619,
+                      "weights": {
+                        "could": -2.964171886,
+                        "you": -3.564543486,
+                        "make": -0.438765645,
+                        "this": -5.972014427,
+                        "chang": -1.486314893,
+                        "i": 1.164034605,
+                        "suggest": -0.481587619,
+                        "we": -0.481587619,
+                        "updat": -0.481587619,
+                        "part": -0.481587619,
+                        "it": -1.605621219,
+                        "would": -2.294981956,
+                        "be": -1.249464989,
+                        "cool": -0.660908341,
+                        "if": -1.249464989,
+                        "add": -2.393362999,
+                        "great": 5.123961926,
+                        "improv": -1.618833661,
+                        "consid": -0.858114958,
+                        "perhap": -0.86897397,
+                        "enhanc": -0.86897397,
+                        "is": -1.476699233,
+                        "possibl": -0.35615623,
+                        "to": -4.535143375,
+                        "modifi": -0.35615623,
+                        "can": -3.851688147,
+                        "function": -1.732454896,
+                        "for": 2.969686747,
+                        "had": -3.42728591,
+                        "like": -1.627273679,
+                        "request": -0.509577215,
+                        "a": -0.509577215,
+                        "featur": -0.509577215,
+                        "need": -0.715219438,
+                        "pleas": 2.366297007,
+                        "help": 0.656657159,
+                        "me": -3.698653936,
+                        "with": -0.539796054,
+                        "assist": -2.609769821,
+                        "in": -2.118897438,
+                        "implement": -0.046153195,
+                        "am": -2.666508198,
+                        "look": -4.897535801,
+                        "an": -0.181661069,
+                        "mind": -1.634073973,
+                        "ad": -1.634073973,
+                        "support": -1.430776954,
+                        "want": -0.077104568,
+                        "should": -1.752078295,
+                        "total": -1.752078295,
+                        "awesom": 0.848615706,
+                        "gotta": -3.133104801,
+                        "love": 4.712603092,
+                        "see": -2.329150438,
+                        "some": -2.329150438,
+                        "more": -1.330981493,
+                        "out": -3.080106974,
+                        "realli": -2.653879166,
+                        "into": -2.507599592,
+                        "provid": -0.68775481,
+                        "detail": -0.037615929,
+                        "explain": -0.091258287,
+                        "further": -0.091258287,
+                        "inform": -3.278704405,
+                        "about": -0.828198493,
+                        "clarifi": -0.189549476,
+                        "someth": -0.189549476,
+                        "info": 0.10526593,
+                        "on": -0.084737398,
+                        "topic": -0.715219438,
+                        "the": -1.390215993,
+                        "what": -0.288893551,
+                        "are": 6.050734997,
+                        "step": -0.288893551,
+                        "do": -0.288893551,
+                        "guidanc": -0.650138795,
+                        "interest": -0.453912646,
+                        "learn": -0.453912646,
+                        "give": -0.124234572,
+                        "context": -0.124234572,
+                        "job": 1.203044176,
+                        "impress": 5.009717941,
+                        "by": 2.397394419,
+                        "well": 2.533033133,
+                        "done": 3.970201492,
+                        "amaz": 1.686236382,
+                        "at": 1.686236382,
+                        "kudo": 2.958375216,
+                        "excel": 4.328312874,
+                        "work": 1.335866332,
+                        "grate": 4.191240311,
+                        "have": 3.508061409,
+                        "so": 5.336707115,
+                        "bravo": 2.788354874,
+                        "appreci": 0.901425004,
+                        "your": 2.788289547,
+                        "effort": 2.96513629,
+                        "exceed": 2.115666628,
+                        "my": 2.115666628,
+                        "expect": 2.115666628,
+                        "thank": 1.48534143,
+                        "been": -0.04478167,
+                        "send": 0.820486367,
+                        "best": 4.6533885,
+                        "good": 5.692881107,
+                        "frustrat": -0.974263191,
+                        "deal": -0.974263191,
+                        "disappoint": -2.511219263,
+                        "outcom": -2.511219263,
+                        "not": -3.892052889,
+                        "satisfi": -1.110116124,
+                        "servic": -1.110116124,
+                        "annoy": -1.330278039,
+                        "situat": -1.330278039,
+                        "happi": -0.996780694,
+                        "qualiti": -0.996780694,
+                        "concern": -0.374286354,
+                        "issu": -0.374286354,
+                        "bother": -0.146279931,
+                        "respons": -1.785157442,
+                        "let": -1.28204453,
+                        "down": -1.28204453,
+                        "lack": -1.28204453,
+                        "of": -1.28204453,
+                        "nonefeature": -6.521407604
+                      }
+                    },
+                    "negative": {
+                      "bias": -1.774457682,
+                      "weights": {
+                        "could": -1.484361649,
+                        "you": -1.567910433,
+                        "make": -0.784299135,
+                        "this": 5.193078995,
+                        "chang": -2.734560251,
+                        "i": 0.144358084,
+                        "suggest": -1.318999767,
+                        "we": -1.318999767,
+                        "updat": -1.806727886,
+                        "part": -1.806727886,
+                        "it": -1.05809927,
+                        "would": -0.383087844,
+                        "be": -1.308537245,
+                        "cool": -0.058924384,
+                        "if": -0.383087844,
+                        "add": -0.107534684,
+                        "great": -0.588117719,
+                        "improv": -1.363595724,
+                        "is": 4.673401833,
+                        "possibl": -0.675011575,
+                        "to": -3.403490305,
+                        "modifi": -0.644701719,
+                        "can": -0.198263735,
+                        "function": -0.048610296,
+                        "for": -1.496147394,
+                        "had": -1.312743425,
+                        "like": -1.245648026,
+                        "request": -0.476315469,
+                        "a": -0.476315469,
+                        "featur": -0.476315469,
+                        "need": -1.362414598,
+                        "pleas": -1.403918386,
+                        "help": -2.532040596,
+                        "me": 0.48072648,
+                        "with": 2.480237246,
+                        "in": -1.296157837,
+                        "am": 2.525191545,
+                        "look": -1.066561103,
+                        "an": -1.039432287,
+                        "support": 1.337629914,
+                        "hook": -0.31697458,
+                        "up": -0.31697458,
+                        "love": -0.097405218,
+                        "see": -0.097405218,
+                        "some": -0.097405218,
+                        "more": -1.870434761,
+                        "out": -0.581779838,
+                        "realli": 0.598145068,
+                        "into": -2.731597185,
+                        "explain": -0.149653435,
+                        "inform": -0.766151667,
+                        "about": 1.0025388,
+                        "info": -0.700919449,
+                        "on": -0.464094043,
+                        "topic": -0.436965257,
+                        "the": 3.579474688,
+                        "process": -0.149653435,
+                        "what": -1.574703455,
+                        "are": -0.927872598,
+                        "step": -0.927872598,
+                        "do": -0.927872598,
+                        "curious": -0.706778944,
+                        "how": -0.706778944,
+                        "procedur": -1.498493552,
+                        "interest": -0.256725311,
+                        "learn": -0.256725311,
+                        "recommend": -0.761662424,
+                        "way": -0.761662424,
+                        "job": -0.263954163,
+                        "impress": -2.536769867,
+                        "by": 1.337885737,
+                        "well": -0.751678288,
+                        "done": -0.751678288,
+                        "grate": -0.380975813,
+                        "have": -0.209448487,
+                        "so": -1.968053937,
+                        "exceed": -0.209448487,
+                        "my": -0.209448487,
+                        "expect": 1.403876901,
+                        "send": -0.263954163,
+                        "frustrat": 2.66549778,
+                        "deal": 2.66549778,
+                        "disappoint": 2.772232533,
+                        "outcom": 2.772232533,
+                        "not": 4.43402338,
+                        "satisfi": -0.250549048,
+                        "servic": -0.250549048,
+                        "annoy": 2.537025452,
+                        "situat": 2.537025452,
+                        "happi": 0.556852162,
+                        "qualiti": 0.556852162,
+                        "concern": 2.705066681,
+                        "issu": 2.705066681,
+                        "bother": 3.329743147,
+                        "respons": 2.514396667,
+                        "let": 1.337629914,
+                        "down": 1.337629914,
+                        "lack": 1.337629914,
+                        "of": 1.337629914,
+                        "nonefeature": -0.385777801
+                      }
+                    },
+                    "None": {
+                      "bias": 1.489854681,
+                      "weights": {
+                        "could": -0.299195141,
+                        "you": -1.15180707,
+                        "make": -0.077025525,
+                        "this": -0.368165493,
+                        "chang": -0.166096836,
+                        "i": -0.976284862,
+                        "suggest": -0.087677054,
+                        "we": -0.087677054,
+                        "updat": -0.087677054,
+                        "part": -0.087677054,
+                        "it": -0.417455703,
+                        "would": -0.170632973,
+                        "be": -0.289345205,
+                        "cool": -0.054351248,
+                        "if": -0.289345205,
+                        "add": -0.103150353,
+                        "great": -1.376084208,
+                        "improv": -0.075388253,
+                        "consid": -0.045798562,
+                        "perhap": -0.070307784,
+                        "enhanc": -0.070307784,
+                        "is": -0.416065484,
+                        "possibl": -0.128110528,
+                        "to": -0.432594895,
+                        "modifi": -0.125206515,
+                        "can": -0.159447908,
+                        "function": -0.048799109,
+                        "for": -1.054042339,
+                        "had": -0.286705077,
+                        "like": -0.109403566,
+                        "request": -0.057332084,
+                        "a": -0.057332084,
+                        "featur": -0.057332084,
+                        "need": -0.000139675,
+                        "pleas": -0.092440218,
+                        "help": -0.278994709,
+                        "me": -0.364107579,
+                        "with": -0.669085801,
+                        "assist": -0.005316128,
+                        "in": -0.087377943,
+                        "implement": -0.005316128,
+                        "am": -0.327125639,
+                        "look": -0.046573304,
+                        "an": -0.046573304,
+                        "mind": -0.087466843,
+                        "ad": -0.087466843,
+                        "support": -0.096602112,
+                        "should": -0.181105301,
+                        "total": -0.181105301,
+                        "awesom": -0.206179217,
+                        "gotta": -0.333265454,
+                        "love": -0.504010081,
+                        "see": -0.023193961,
+                        "some": -0.023193961,
+                        "more": -0.085263073,
+                        "out": -0.216914147,
+                        "realli": -0.224896252,
+                        "into": -0.128338099,
+                        "provid": -0.052142788,
+                        "detail": -0.049634911,
+                        "explain": -0.026919698,
+                        "further": -0.017581115,
+                        "about": -0.037465718,
+                        "info": -0.061823234,
+                        "on": -0.803615212,
+                        "topic": -0.000139675,
+                        "the": -0.293003231,
+                        "process": -0.009338587,
+                        "what": -0.221981153,
+                        "are": -0.133964539,
+                        "step": -0.032630987,
+                        "do": -0.032630987,
+                        "curious": -0.00197721,
+                        "how": -0.00197721,
+                        "procedur": -0.126033634,
+                        "guidanc": -0.000461399,
+                        "interest": -0.035488509,
+                        "learn": -0.035488509,
+                        "insight": -0.002046488,
+                        "recommend": -0.063316554,
+                        "way": -0.063316554,
+                        "job": -0.219233304,
+                        "impress": -0.116794929,
+                        "by": -0.116794929,
+                        "well": -0.408898592,
+                        "done": -0.408898592,
+                        "amaz": -0.101333573,
+                        "at": -0.101333573,
+                        "kudo": -0.434670597,
+                        "excel": -0.341924667,
+                        "work": -0.341924667,
+                        "have": -0.018807832,
+                        "so": -0.018807832,
+                        "bravo": -0.427397907,
+                        "your": -0.37811029,
+                        "effort": -0.303540111,
+                        "thank": -0.074570246,
+                        "been": -0.018807832,
+                        "send": -0.061683558,
+                        "good": -1.380979657,
+                        "bother": -0.098604597,
+                        "nonefeature": 10.75810051
+                      }
+                    }
+                  }
+                ],
+                "trainOpts": {
+                  "iterations": 20000,
+                  "errorThresh": 0.00005,
+                  "fixedError": false,
+                  "deltaErrorThresh": 0.000001,
+                  "learningRate": 0.7,
+                  "momentum": 0.5,
+                  "leakyReluAlpha": 0.08,
+                  "maxDecimals": 9,
+                  "log": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "sp": {
+        "settings": {
+          "language": "sp",
+          "useNoneFeature": false,
+          "config": {
+            "activation": "leaky-relu",
+            "hiddenLayers": [],
+            "iterations": 20000,
+            "learningRate": 0.7,
+            "errorThresh": 0.00005,
+            "momentum": 0.5,
+            "deltaErrorThresh": 0.000001,
+            "maxDecimals": 9,
+            "leakyReluAlpha": 0.08,
+            "timeout": 120000
+          }
+        },
+        "language": "sp",
+        "nluClassName": "BrainNLU",
+        "useMasterDomain": true,
+        "trainByDomain": false,
+        "keepStopwords": true,
+        "stemDict": {},
+        "intentDict": {},
+        "useStemDict": true,
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "language": "sp",
+              "useNoneFeature": false,
+              "config": {
+                "activation": "leaky-relu",
+                "hiddenLayers": [],
+                "iterations": 20000,
+                "learningRate": 0.7,
+                "errorThresh": 0.00005,
+                "momentum": 0.5,
+                "deltaErrorThresh": 0.000001,
+                "maxDecimals": 9,
+                "leakyReluAlpha": 0.08,
+                "timeout": 120000
+              }
+            },
+            "language": "sp",
+            "keepStopwords": true,
+            "docs": [],
+            "features": {},
+            "isEditing": false,
+            "className": "BrainNLU",
+            "classifier": {
+              "className": "BrainClassifier",
+              "settings": {
+                "language": "sp",
+                "useNoneFeature": false,
+                "config": {
+                  "activation": "leaky-relu",
+                  "hiddenLayers": [],
+                  "iterations": 20000,
+                  "learningRate": 0.7,
+                  "errorThresh": 0.00005,
+                  "momentum": 0.5,
+                  "deltaErrorThresh": 0.000001,
+                  "maxDecimals": 9,
+                  "leakyReluAlpha": 0.08,
+                  "timeout": 120000
+                }
+              },
+              "labels": [],
+              "network": {
+                "layers": [],
+                "trainOpts": {
+                  "iterations": 20000,
+                  "errorThresh": 0.00005,
+                  "fixedError": false,
+                  "deltaErrorThresh": 0.000001,
+                  "learningRate": 0.7,
+                  "momentum": 0.5,
+                  "leakyReluAlpha": 0.08,
+                  "maxDecimals": 9,
+                  "log": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extraSentences": [
+      [
+        "en",
+        "Could you make this change?"
+      ],
+      [
+        "en",
+        "I suggest we update this part."
+      ],
+      [
+        "en",
+        "It would be cool if you could add"
+      ],
+      [
+        "en",
+        "It would be great if this could be improved:"
+      ],
+      [
+        "en",
+        "Could you consider changing"
+      ],
+      [
+        "en",
+        "Perhaps you could enhance"
+      ],
+      [
+        "en",
+        "Is it possible to modify"
+      ],
+      [
+        "en",
+        "Can you add functionality for"
+      ],
+      [
+        "en",
+        "I'd like to request a feature:"
+      ],
+      [
+        "en",
+        "I need this part to be updated:"
+      ],
+      [
+        "en",
+        "Please help me with this change:"
+      ],
+      [
+        "en",
+        "Could you assist me in implementing"
+      ],
+      [
+        "en",
+        "I'm looking for an improvement in"
+      ],
+      [
+        "en",
+        "Would you mind adding support for"
+      ],
+      [
+        "en",
+        "I want you to change"
+      ],
+      [
+        "en",
+        "You should totally"
+      ],
+      [
+        "en",
+        "It'd be awesome if"
+      ],
+      [
+        "en",
+        "You gotta"
+      ],
+      [
+        "en",
+        "Can you, like, please"
+      ],
+      [
+        "en",
+        "Maybe you could, like,"
+      ],
+      [
+        "en",
+        "Is it like possible to"
+      ],
+      [
+        "en",
+        "Could you hook me up with"
+      ],
+      [
+        "en",
+        "I'd love to see some"
+      ],
+      [
+        "en",
+        "I need this to be more"
+      ],
+      [
+        "en",
+        "Help me out with"
+      ],
+      [
+        "en",
+        "Could you, like, assist me in"
+      ],
+      [
+        "en",
+        "I'm really into"
+      ],
+      [
+        "en",
+        "Would you mind adding"
+      ],
+      [
+        "en",
+        "I want you to make it"
+      ],
+      [
+        "en",
+        "Can you provide more details?"
+      ],
+      [
+        "en",
+        "Could you explain further?"
+      ],
+      [
+        "en",
+        "I'd like more information about this."
+      ],
+      [
+        "en",
+        "Could you help me understand better?"
+      ],
+      [
+        "en",
+        "Can you clarify something for me?"
+      ],
+      [
+        "en",
+        "I need more info on this topic."
+      ],
+      [
+        "en",
+        "Can you explain the process?"
+      ],
+      [
+        "en",
+        "What are the steps to do this?"
+      ],
+      [
+        "en",
+        "I'm curious about how to"
+      ],
+      [
+        "en",
+        "What's the procedure to"
+      ],
+      [
+        "en",
+        "Can you provide guidance on"
+      ],
+      [
+        "en",
+        "I'm interested in learning more about"
+      ],
+      [
+        "en",
+        "Can you provide insights into"
+      ],
+      [
+        "en",
+        "Could you share more details about"
+      ],
+      [
+        "en",
+        "I'm looking for information on"
+      ],
+      [
+        "en",
+        "Can you give me more context on"
+      ],
+      [
+        "en",
+        "What's the recommended way to"
+      ],
+      [
+        "en",
+        "Great job on"
+      ],
+      [
+        "en",
+        "I'm impressed by"
+      ],
+      [
+        "en",
+        "Well done with"
+      ],
+      [
+        "en",
+        "I love"
+      ],
+      [
+        "en",
+        "You're amazing at"
+      ],
+      [
+        "en",
+        "Kudos for"
+      ],
+      [
+        "en",
+        "Excellent work on"
+      ],
+      [
+        "en",
+        "I'm grateful for"
+      ],
+      [
+        "en",
+        "You've done an awesome job on"
+      ],
+      [
+        "en",
+        "I'm so pleased with"
+      ],
+      [
+        "en",
+        "Bravo for"
+      ],
+      [
+        "en",
+        "I appreciate your work on"
+      ],
+      [
+        "en",
+        "Your effort on"
+      ],
+      [
+        "en",
+        "You've exceeded my expectations with"
+      ],
+      [
+        "en",
+        "Thanks for your support."
+      ],
+      [
+        "en",
+        "I appreciate your help."
+      ],
+      [
+        "en",
+        "You've been so helpful."
+      ],
+      [
+        "en",
+        "Great job sending the info."
+      ],
+      [
+        "en",
+        "You're the best."
+      ],
+      [
+        "en",
+        "I'm grateful for your assistance."
+      ],
+      [
+        "en",
+        "good"
+      ],
+      [
+        "en",
+        "great"
+      ],
+      [
+        "en",
+        "This is frustrating to deal with."
+      ],
+      [
+        "en",
+        "I'm disappointed with the outcome."
+      ],
+      [
+        "en",
+        "I'm not satisfied with this service."
+      ],
+      [
+        "en",
+        "I'm annoyed by this situation."
+      ],
+      [
+        "en",
+        "I'm not happy with the quality."
+      ],
+      [
+        "en",
+        "I'm concerned about this issue."
+      ],
+      [
+        "en",
+        "This is really bothering me."
+      ],
+      [
+        "en",
+        "I'm not pleased with the response."
+      ],
+      [
+        "en",
+        "I'm let down by the lack of support."
+      ],
+      [
+        "en",
+        "This is not what I expected."
+      ]
+    ]
+  },
+  "nerManager": {
+    "settings": {},
+    "threshold": 0.8,
+    "builtins": [
+      "Number",
+      "Ordinal",
+      "Percentage",
+      "Age",
+      "Currency",
+      "Dimension",
+      "Temperature",
+      "DateTime",
+      "PhoneNumber",
+      "IpAddress",
+      "Boolean",
+      "Email",
+      "Hashtag",
+      "URL"
+    ],
+    "namedEntities": {}
+  },
+  "slotManager": {},
+  "responses": {},
+  "actions": {},
+  "utteranceDict": {
+    "?": "help"
+  }
+}

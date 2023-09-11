@@ -1,6 +1,5 @@
 const { NlpManager } = require('node-nlp');
-
-const manager = new NlpManager({ languages: ['en'], forceNER: true });
+const manager = new NlpManager({ languages: ['en', 'sp'], forceNER: true });
 
 manager.addDocument('en', "Could you make this change?", 'request');
 manager.addDocument('en', "I suggest we update this part.", 'request');
@@ -19,7 +18,6 @@ manager.addDocument('en', "Would you mind adding support for", 'request');
 manager.addDocument('en', "I want you to change", 'request');
 manager.addDocument('en', "You should totally", 'request');
 manager.addDocument('en', "It'd be awesome if", 'request');
-manager.addDocument('en', "It'd be lit if", 'request');
 manager.addDocument('en', "You gotta", 'request');
 manager.addDocument('en', "Can you, like, please", 'request');
 manager.addDocument('en', "Maybe you could, like,", 'request');
@@ -73,10 +71,42 @@ manager.addDocument('en', "You're the best.", 'positive');
 manager.addDocument('en', "I'm grateful for your assistance.", 'positive');
 manager.addDocument('en', "good", 'positive');
 manager.addDocument('en', "great", 'positive');
+manager.addDocument('en', "Hi there! I'm feeling great today.", 'positive');
+manager.addDocument('en', "Hello, I'm having an awesome day.", 'positive');
+manager.addDocument('en', "Hey! It's nice to see you again.", 'positive');
+manager.addDocument('en', "Good morning! I'm in a fantastic mood.", 'positive');
+manager.addDocument('en', "Hi, how's it going? I'm doing wonderfully.", 'positive');
+manager.addDocument('en', "Hello, I hope you're well. I'm really happy.", 'positive');
+manager.addDocument('en', "Hey, it's a beautiful day! I'm feeling cheerful.", 'positive');
+manager.addDocument('en', "Good afternoon! I'm having a fantastic time.", 'positive');
+manager.addDocument('en', "Hi there, friend! I'm filled with joy.", 'positive');
+manager.addDocument('en', "Hello, everyone! I'm thrilled to be here.", 'positive');
+
+
+manager.addDocument('en', "This is frustrating to deal with.", 'negative');
+manager.addDocument('en', "I'm disappointed with the outcome.", 'negative');
+manager.addDocument('en', "I'm not satisfied with this service.", 'negative');
+manager.addDocument('en', "I'm annoyed by this situation.", 'negative');
+manager.addDocument('en', "I'm not happy with the quality.", 'negative');
+manager.addDocument('en', "I'm concerned about this issue.", 'negative');
+manager.addDocument('en', "This is really bothering me.", 'negative');
+manager.addDocument('en', "I'm not pleased with the response.", 'negative');
+manager.addDocument('en', "I'm let down by the lack of support.", 'negative');
+manager.addDocument('en', "This is not what I expected.", 'negative');
+manager.addDocument('en', "I find this incredibly frustrating.", 'negative');
+manager.addDocument('en', "This situation is quite disappointing.", 'negative');
+manager.addDocument('en', "I'm extremely dissatisfied with the service.", 'negative');
+manager.addDocument('en', "Dealing with this is really annoying.", 'negative');
+manager.addDocument('en', "The quality here is far from satisfactory.", 'negative');
+manager.addDocument('en', "I'm deeply concerned about this issue.", 'negative');
+manager.addDocument('en', "This issue is causing me a lot of distress.", 'negative');
+manager.addDocument('en', "I'm thoroughly displeased with the response.", 'negative');
+manager.addDocument('en', "The lack of support is a major letdown.", 'negative');
+manager.addDocument('en', "This falls far short of my expectations.", 'negative');
+
+
 
 (async () => {
     await manager.train();
     manager.save();
 })();
-
-module.exports = manager;
