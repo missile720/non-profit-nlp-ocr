@@ -1,5 +1,5 @@
 const { NlpManager } = require('node-nlp');
-const manager = new NlpManager({ languages: ['en', 'sp'], forceNER: true });
+const manager = new NlpManager({ languages: ['en'], forceNER: true });
 
 manager.addDocument('en', "Could you make this change?", 'request');
 manager.addDocument('en', "I suggest we update this part.", 'request');
@@ -30,6 +30,23 @@ manager.addDocument('en', "Could you, like, assist me in", 'request');
 manager.addDocument('en', "I'm really into", 'request');
 manager.addDocument('en', "Would you mind adding", 'request');
 manager.addDocument('en', "I want you to make it", 'request');
+manager.addDocument('en', "I'm looking for information on", 'request');
+manager.addDocument('en', "You should totally add this feature.", 'request');
+manager.addDocument('en', "It'd be awesome if you could implement this.", 'request');
+manager.addDocument('en', "You gotta make this change.", 'request');
+manager.addDocument('en', "Can you, like, please add this?", 'request');
+manager.addDocument('en', "Maybe you could, like, consider improving this.", 'request');
+manager.addDocument('en', "Is it like possible to enhance this part?", 'request');
+manager.addDocument('en', "Could you hook me up with more info?", 'request');
+manager.addDocument('en', "I'd love to see some updates here.", 'request');
+manager.addDocument('en', "I need this to be more user-friendly.", 'request');
+manager.addDocument('en', "Help me out with this change:", 'request');
+manager.addDocument('en', "Could you, like, assist me in implementing this feature?", 'request');
+manager.addDocument('en', "I'm really into this idea. Can you make it happen?", 'request');
+manager.addDocument('en', "Would you mind adding support for this?", 'request');
+manager.addDocument('en', "I want you to make it happen:", 'request');
+manager.addDocument('en', "I'm looking for information on this improvement.", 'request');
+
 
 manager.addDocument('en', "Can you provide more details?", 'question');
 manager.addDocument('en', "Could you explain further?", 'question');
@@ -42,12 +59,26 @@ manager.addDocument('en', "What are the steps to do this?", 'question');
 manager.addDocument('en', "I'm curious about how to", 'question');
 manager.addDocument('en', "What's the procedure to", 'question');
 manager.addDocument('en', "Can you provide guidance on", 'question');
-manager.addDocument('en', "I'm interested in learning more about", 'question');
 manager.addDocument('en', "Can you provide insights into", 'question');
 manager.addDocument('en', "Could you share more details about", 'question');
-manager.addDocument('en', "I'm looking for information on", 'question');
 manager.addDocument('en', "Can you give me more context on", 'question');
 manager.addDocument('en', "What's the recommended way to", 'question');
+manager.addDocument('en', "Can you provide more details about this topic?", 'question');
+manager.addDocument('en', "Could you explain this further?", 'question');
+manager.addDocument('en', "I'd like more information about this subject.", 'question');
+manager.addDocument('en', "Could you help me understand this better?", 'question');
+manager.addDocument('en', "Can you clarify something about this?", 'question');
+manager.addDocument('en', "I need more info on this subject.", 'question');
+manager.addDocument('en', "Can you explain the process behind this?", 'question');
+manager.addDocument('en', "What are the steps to do this task?", 'question');
+manager.addDocument('en', "I'm curious about how to accomplish this.", 'question');
+manager.addDocument('en', "What's the procedure for this action?", 'question');
+manager.addDocument('en', "Can you provide guidance on this matter?", 'question');
+manager.addDocument('en', "Can you provide insights into this topic?", 'question');
+manager.addDocument('en', "Could you share more details about this subject?", 'question');
+manager.addDocument('en', "Can you give me more context on this issue?", 'question');
+manager.addDocument('en', "What's the recommended way to approach this?", 'question');
+
 
 manager.addDocument('en', "Great job on", 'positive');
 manager.addDocument('en', "I'm impressed by", 'positive');
@@ -69,8 +100,6 @@ manager.addDocument('en', "You've been so helpful.", 'positive');
 manager.addDocument('en', "Great job sending the info.", 'positive');
 manager.addDocument('en', "You're the best.", 'positive');
 manager.addDocument('en', "I'm grateful for your assistance.", 'positive');
-manager.addDocument('en', "good", 'positive');
-manager.addDocument('en', "great", 'positive');
 manager.addDocument('en', "Hi there! I'm feeling great today.", 'positive');
 manager.addDocument('en', "Hello, I'm having an awesome day.", 'positive');
 manager.addDocument('en', "Hey! It's nice to see you again.", 'positive');
@@ -81,6 +110,28 @@ manager.addDocument('en', "Hey, it's a beautiful day! I'm feeling cheerful.", 'p
 manager.addDocument('en', "Good afternoon! I'm having a fantastic time.", 'positive');
 manager.addDocument('en', "Hi there, friend! I'm filled with joy.", 'positive');
 manager.addDocument('en', "Hello, everyone! I'm thrilled to be here.", 'positive');
+manager.addDocument('en', "Outstanding work on that project!", 'positive');
+manager.addDocument('en', "I'm really impressed with your performance.", 'positive');
+manager.addDocument('en', "Excellent job handling that situation.", 'positive');
+manager.addDocument('en', "You're doing a fantastic job!", 'positive');
+manager.addDocument('en', "I'm thrilled with the results.", 'positive');
+manager.addDocument('en', "You make everything so much better!", 'positive');
+manager.addDocument('en', "I'm grateful for your hard work.", 'positive');
+manager.addDocument('en', "You've exceeded my expectations.", 'positive');
+manager.addDocument('en', "Thanks for your exceptional support.", 'positive');
+manager.addDocument('en', "Your assistance has been invaluable.", 'positive');
+manager.addDocument('en', "I couldn't be happier with your service.", 'positive');
+manager.addDocument('en', "You're a true professional.", 'positive');
+manager.addDocument('en', "I appreciate your dedication.", 'positive');
+manager.addDocument('en', "You've made my day with your help.", 'positive');
+manager.addDocument('en', "I can always count on you.", 'positive');
+manager.addDocument('en', "You're a rockstar!", 'positive');
+manager.addDocument('en', "I'm so grateful for your support.", 'positive');
+manager.addDocument('en', "You're a lifesaver.", 'positive');
+manager.addDocument('en', "Your assistance is invaluable.", 'positive');
+manager.addDocument('en', "You're a true asset to the team.", 'positive');
+manager.addDocument('en', "I hope you feel better.", 'positive');
+
 
 
 manager.addDocument('en', "This is frustrating to deal with.", 'negative');
@@ -103,8 +154,37 @@ manager.addDocument('en', "This issue is causing me a lot of distress.", 'negati
 manager.addDocument('en', "I'm thoroughly displeased with the response.", 'negative');
 manager.addDocument('en', "The lack of support is a major letdown.", 'negative');
 manager.addDocument('en', "This falls far short of my expectations.", 'negative');
-
-
+manager.addDocument('en', "I'm very disappointed with this outcome.", 'negative');
+manager.addDocument('en', "This is frustrating and unacceptable.", 'negative');
+manager.addDocument('en', "I'm upset about this situation.", 'negative');
+manager.addDocument('en', "This is a major letdown.", 'negative');
+manager.addDocument('en', "I'm not satisfied with the quality.", 'negative');
+manager.addDocument('en', "This is a complete failure.", 'negative');
+manager.addDocument('en', "I'm so frustrated right now.", 'negative');
+manager.addDocument('en', "This is terrible news.", 'negative');
+manager.addDocument('en', "I can't believe how disappointing this is.", 'negative');
+manager.addDocument('en', "I'm very displeased with your service.", 'negative');
+manager.addDocument('en', "I don't think I can do it.", 'negative');
+manager.addDocument('en', "This is incredibly frustrating.", 'negative');
+manager.addDocument('en', "I'm extremely disappointed with this outcome.", 'negative');
+manager.addDocument('en', "I'm really dissatisfied with this service.", 'negative');
+manager.addDocument('en', "I'm irritated by this situation.", 'negative');
+manager.addDocument('en', "I'm not happy with the quality at all.", 'negative');
+manager.addDocument('en', "I'm deeply concerned about this issue.", 'negative');
+manager.addDocument('en', "This is causing me a lot of distress.", 'negative');
+manager.addDocument('en', "I'm thoroughly displeased with the response.", 'negative');
+manager.addDocument('en', "The lack of support is disappointing.", 'negative');
+manager.addDocument('en', "This falls short of my expectations.", 'negative');
+manager.addDocument('en', "I'm very frustrated right now.", 'negative');
+manager.addDocument('en', "This is terrible news.", 'negative');
+manager.addDocument('en', "I can't believe how disappointing this is.", 'negative');
+manager.addDocument('en', "I'm very displeased with your service.", 'negative');
+manager.addDocument('en', "I don't think I can continue like this.", 'negative');
+manager.addDocument('en', "This is beyond frustrating.", 'negative');
+manager.addDocument('en', "I'm fed up with this situation.", 'negative');
+manager.addDocument('en', "I'm extremely disappointed in your support.", 'negative');
+manager.addDocument('en', "This is a major letdown.", 'negative');
+manager.addDocument('en', "I'm not satisfied with your performance at all.", 'negative');
 
 (async () => {
     await manager.train();

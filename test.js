@@ -17,6 +17,6 @@ const sentences = [
 (async () => {
     for (let sentence of sentences) {
         const classifiedSentence = await textClassifier.classifySentence(sentence);
-        console.log(classifiedSentence.sentence, classifiedSentence.classification)
+        console.log(classifiedSentence.sentence, classifiedSentence.classification[0])
     }
 })();

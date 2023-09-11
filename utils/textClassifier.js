@@ -20,7 +20,7 @@ class textClassifier {
             const language = guessLanguage(message).alpha3
             const analysis = await manager.process(language, message)
 
-            classifiedConversation.push({ sentence: analysis.utterance, classification: analysis.classification })
+            classifiedConversation.push({ sentence: analysis.utterance, classification: analysis.classifications })
         }
 
         return classifiedConversation
