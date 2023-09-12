@@ -10,6 +10,6 @@ const guessLanguage = (text) => {
     return guess   
 }
 
-// console.log(guessLanguage(text))
+console.log(guessLanguage(text))
 
 module.exports = guessLanguage
