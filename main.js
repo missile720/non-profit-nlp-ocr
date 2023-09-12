@@ -4,6 +4,7 @@ const JSONStream = require("JSONStream");
 const { createWorker } = require("tesseract.js");
 
 const SentimentStatisticTracker = require("./utils/sentimentAnalysis.js");
+const guessLanguage = require("./utils/languageGuesserModel.js")
 
 // File Utility Functions
 /**
@@ -68,6 +69,11 @@ async function processMessage(sentiment, conversationId, message) {
 
     if (!imageContent) {
         sentiment.process(conversationId, message);
+
+        // console.log('messages: ', message.body)
+
+        const languageGuess = guessLanguage(message.body)
+        console.log('Language Guess: ', languageGuess.language)
     }
 }
 
