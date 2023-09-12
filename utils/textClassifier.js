@@ -60,6 +60,7 @@ class textClassifier {
         const language = guessLanguage(input).alpha3
         const analysis = await manager.process(language, input)
 
+        return analysis
         return { sentence: analysis.utterance, classification: analysis.classifications }
     }
 
