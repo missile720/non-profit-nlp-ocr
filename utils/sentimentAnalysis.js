@@ -14,6 +14,7 @@ class SentimentStatisticTracker {
         // for that conversation
         this.conversationScores = new Map();
         this.language = "en";
+        this.supportedLanguges = ["en", "es"]
     }
     
     // --------MAIN METHODS--------
@@ -63,6 +64,18 @@ class SentimentStatisticTracker {
 
         const averageSentiment = this.calcOverallAverageSentiment(this.sentimentScores);
         console.log(`Average sentiment of dataset is ${this.getSentimentVote(averageSentiment)} with a score of ${averageSentiment.toFixed()}`);
+    }
+
+    // --------SETTERS--------
+    /**
+     * Sets the language for sentiment analysis to a given language 
+     * if it supported
+     * @param {string} language A supported alpha2 language string
+     */
+    setLanguage(language) {
+        if (this.supportedLanguges.includes(language)) {
+            this.language = language;
+        }
     }
 
     // --------SENTIMENT STAT TRACKING HELPERS--------
