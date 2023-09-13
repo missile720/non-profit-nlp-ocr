@@ -4,14 +4,13 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update-model": "cd models && node englishTextClassificationModel.js && cd.."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tensorflow-models/universal-sentence-encoder": "^1.3.3",
-    "@tensorflow/tfjs": "^4.10.0",
     "bignumber.js": "^9.1.1",
     "JSONStream": "^1.3.5",
     "node-nlp": "^4.27.0",
