@@ -69,10 +69,11 @@ async function processMessage(sentiment, conversationId, message) {
     const imageContent = imageData && await performOCR(imageData);
 
     if (!imageContent) {
+        sentiment.setLanguage(languageGuess.alpha2);
         sentiment.process(conversationId, message);
 
         // console.log('messages: ', message.body);
-        // console.log('Language Guess: ', languageGuess.language)
+        // console.log('Language Guess: ', languageGuess);
     }
 }
 
