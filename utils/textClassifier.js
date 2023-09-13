@@ -1,10 +1,10 @@
 const { NlpManager } = require('node-nlp');
 const path = require('path');
-const manager = new NlpManager();
-
 const guessLanguage = require('./languageGuesserModel.js');
 
+const manager = new NlpManager();
 const modelPath = path.resolve(__dirname, '../models/model.nlp');
+
 manager.load(modelPath);
 
 class textClassifier {
@@ -60,13 +60,9 @@ class textClassifier {
         const language = guessLanguage(input).alpha3
         const analysis = await manager.process(language, input)
 
-        return analysis
-        return { sentence: analysis.utterance, classification: analysis.classifications }
+        return { sentence: analysis.utterance, classification: analysis.classifications[0], triggerWords: analysisEntities }
     }
 
-    static async #getClassificationTriggerWords() {
-
-    }
 }
 
 module.exports = textClassifier;

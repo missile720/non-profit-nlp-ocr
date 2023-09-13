@@ -15,14 +15,9 @@ const sentences = [
     "No problem. Let me know how it goes!",
 ];
 
-
-
 (async () => {
-    // for (let sentence of sentences) {
-    //     const classifiedSentence = await textClassifier.classifySentence(sentence);
-    //     console.log(classifiedSentence.sentence, classifiedSentence.classification[0])
-    // }
-    const classifiedSentence = await textClassifier.classifySentence(sentences[3]);
-    console.log(classifiedSentence)
-    //console.log(classifiedSentence.sentence, classifiedSentence.classification[0])
+    for (let sentence of sentences) {
+        const classifiedSentence = await textClassifier.classifySentence(sentence);
+        console.log(classifiedSentence)
+    }
 })();

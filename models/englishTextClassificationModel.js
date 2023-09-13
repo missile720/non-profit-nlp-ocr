@@ -400,7 +400,6 @@ manager.addDocument('en', "I'm extremely dismayed in your support.", 'negative')
 manager.addDocument('en', "This is a significant disappointment.", 'negative');
 manager.addDocument('en', "I'm deeply dissatisfied with your performance.", 'negative');
 
-
 (async () => {
     await manager.train();
     manager.save();

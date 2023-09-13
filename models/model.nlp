@@ -9545,7 +9545,183 @@
       "Hashtag",
       "URL"
     ],
-    "namedEntities": {}
+    "namedEntities": {
+      "PositiveEntity": {
+        "type": "enum",
+        "name": "PositiveEntity",
+        "localeFallback": {
+          "*": "en"
+        },
+        "locales": {
+          "undefined": {
+            "good": [
+              null
+            ],
+            "excellent": [
+              null
+            ],
+            "great": [
+              null
+            ],
+            "outstanding": [
+              null
+            ],
+            "awesome": [
+              null
+            ],
+            "fantastic": [
+              null
+            ],
+            "superb": [
+              null
+            ],
+            "amazing": [
+              null
+            ],
+            "wonderful": [
+              null
+            ]
+          }
+        }
+      },
+      "NegativeEntity": {
+        "type": "enum",
+        "name": "NegativeEntity",
+        "localeFallback": {
+          "*": "en"
+        },
+        "locales": {
+          "undefined": {
+            "bad": [
+              null
+            ],
+            "terrible": [
+              null
+            ],
+            "awful": [
+              null
+            ],
+            "horrible": [
+              null
+            ],
+            "dreadful": [
+              null
+            ],
+            "abysmal": [
+              null
+            ],
+            "atrocious": [
+              null
+            ],
+            "lousy": [
+              null
+            ]
+          }
+        }
+      },
+      "QuestionEntity": {
+        "type": "enum",
+        "name": "QuestionEntity",
+        "localeFallback": {
+          "*": "en"
+        },
+        "locales": {
+          "undefined": {
+            "who": [
+              null
+            ],
+            "what": [
+              null
+            ],
+            "when": [
+              null
+            ],
+            "where": [
+              null
+            ],
+            "how": [
+              null
+            ],
+            "why": [
+              null
+            ],
+            "how come": [
+              null
+            ]
+          }
+        }
+      },
+      "RequestEntity": {
+        "type": "enum",
+        "name": "RequestEntity",
+        "localeFallback": {
+          "*": "en"
+        },
+        "locales": {
+          "undefined": {
+            "please": [
+              null
+            ],
+            "could you": [
+              null
+            ],
+            "kindly": [
+              null
+            ],
+            "request": [
+              null
+            ],
+            "ask": [
+              null
+            ],
+            "need": [
+              null
+            ],
+            "require": [
+              null
+            ],
+            "seek": [
+              null
+            ]
+          }
+        }
+      },
+      "SuggestionEntity": {
+        "type": "enum",
+        "name": "SuggestionEntity",
+        "localeFallback": {
+          "*": "en"
+        },
+        "locales": {
+          "undefined": {
+            "should": [
+              null
+            ],
+            "you could": [
+              null
+            ],
+            "might": [
+              null
+            ],
+            "recommend": [
+              null
+            ],
+            "suggest": [
+              null
+            ],
+            "propose": [
+              null
+            ],
+            "advise": [
+              null
+            ],
+            "offer": [
+              null
+            ]
+          }
+        }
+      }
+    }
   },
   "slotManager": {},
   "responses": {},
