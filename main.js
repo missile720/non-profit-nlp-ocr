@@ -4,6 +4,7 @@ const JSONStream = require("JSONStream");
 const { createWorker } = require("tesseract.js");
 
 const SentimentStatisticTracker = require("./utils/sentimentAnalysis.js");
+const guessLanguage = require("./utils/languageGuesserModel.js")
 
 // File Utility Functions
 /**
@@ -64,10 +65,15 @@ async function performOCR(base64Image) {
  */
 async function processMessage(sentiment, conversationId, message) {
     const imageData = filterBase64Data(message.body);
+    const languageGuess = guessLanguage(message.body);
     const imageContent = imageData && await performOCR(imageData);
 
     if (!imageContent) {
+        sentiment.setLanguage(languageGuess.alpha2);
         sentiment.process(conversationId, message);
+
+        // console.log('messages: ', message.body);
+        // console.log('Language Guess: ', languageGuess);
     }
 }
 
@@ -106,8 +112,8 @@ async function processMessage(sentiment, conversationId, message) {
                 conversationIds.map(async conversationId => {
                     const messages = chunk[conversationId];
 
-                    await Promise.all(messages.map(message => 
-                        processMessage(sentiment, conversationId, message)
+                    await Promise.all(messages.map(async message => 
+                        await processMessage(sentiment, conversationId, message)
                     ));
                 })
             );
