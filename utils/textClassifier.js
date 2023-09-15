@@ -1,4 +1,5 @@
-const { NlpManager } = require('node-nlp');
+const { NlpManager, Tokenizer } = require('node-nlp');
+const keyword_extractor = require('keyword-extractor');
 const path = require('path');
 const guessLanguage = require('./languageGuesserModel.js');
 
@@ -17,10 +18,8 @@ class textClassifier {
         const classifiedConversation = [];
 
         for (let message of conversation) {
-            const language = guessLanguage(message).alpha3
-            const analysis = await manager.process(language, message)
-
-            classifiedConversation.push({ sentence: analysis.utterance, classification: analysis.classifications })
+            const separatedSentences = await this.classifySentences(message);
+            classifiedConversation.push(separatedSentences);
         }
 
         return classifiedConversation
@@ -34,15 +33,13 @@ class textClassifier {
      * @returns {Object[]} An array of objects that include the sentence it 
      * analyzed as well as its classification
      */
-    static async classifySentences(input) {
-        const splitSentences = input.split(/(?<=[.?!;])\s+/);
+    static async classifySentences(sentences) {
+        const splitSentences = sentences.split(/(?<=[.?!;])\s+/);
         const classifiedSentences = [];
 
         for (let sentence of splitSentences) {
-            const language = guessLanguage(sentence).alpha3
-            const analysis = await manager.process(language, sentence)
-
-            classifiedSentences.push({ sentence: analysis.utterance, classification: analysis.classifications })
+            const classifiedSentence = await this.classifySentence(sentence)
+            classifiedSentences.push(classifiedSentence)
         }
 
         return classifiedSentences
@@ -57,12 +54,18 @@ class textClassifier {
      * its classification
      */
     static async classifySentence(input) {
-        const language = guessLanguage(input).alpha3
-        const analysis = await manager.process(language, input)
+        const language = guessLanguage(input)
+        const analysis = await manager.process(language.alpha3, input)
+        const analysisEntities = await keyword_extractor.extract(input, {
+            language: language.alpha2,
+            remove_digits: false,
+            return_changed_case: true,
+            return_chained_words: true,
+            remove_duplicates: false
+        })
 
-        return { sentence: analysis.utterance, classification: analysis.classifications[0] }
+        return { sentence: analysis.utterance, classification: analysis.classifications[0], keyWords: analysisEntities }
     }
-
 }
 
 module.exports = textClassifier;
