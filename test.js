@@ -1,23 +1,23 @@
 const textClassifier = require('./utils/textClassifier.js');
 const sentences = [
-    "Hey, have you heard about the new movie coming out this weekend?",
-    "No, I haven't. What's it called?",
-    "It's called 'The Enigma.' It's a sci-fi thriller with some mind-bending twists.",
-    "Wow, that sounds intriguing. Who's in the cast?",
-    "The lead actor is a rising star, and there are a few veteran actors too.",
-    "I'm a fan of sci-fi. I'll definitely check it out.",
-    "Great! Let's plan to watch it together on Saturday night.",
-    "Sounds like a plan. I'll bring the popcorn!",
-    "By the way, did you manage to fix that issue with your computer?",
-    "Not yet. I tried a few things, but it's still acting up.",
-    "You might want to try contacting tech support. They could help.",
-    "I'll give that a shot. Thanks for the advice.",
-    "No problem. Let me know how it goes!",
+    "Hi Wallace. This is your daily check-in. How are you doing today?",
+    "hi. im ok. just a little tired",
+    "I'm sorry to hear that. I hope you feel better soon.",
+    "thanks",
+    "I'm here if you need anything. Have you registered for single parent classes yet?",
+    "no. i dont think i can afford it",
+    "I understand. I'll send you some information about financial aid.",
+    "ok",
+    "hi did you send that information yet?",
+    "I'm sorry, I haven't had a chance to yet. I'll send it to you now.",
+    "ok",
+    "this is not helpful. i dont qualify for any of these. im very disappointed. i wish you offered better financial aid"
 ];
 
+
 (async () => {
-    for (let sentence of sentences) {
-        const classifiedSentence = await textClassifier.classifySentence(sentence);
-        console.log(classifiedSentence)
-    }
+
+    const classifiedConversation = await textClassifier.classifyConversation(sentences);
+    console.log(classifiedConversation)
+
 })();
