@@ -70,27 +70,29 @@ async function performOCR(base64Image) {
  */
 async function processMessage(sentiment, conversationId, message, complaintKeywords, ideaKeywords) {
     const imageData = filterBase64Data(message.body);
-    const languageGuess = guessLanguage(message.body);
     const imageContent = imageData && await performOCR(imageData);
+    const languageGuess = guessLanguage(imageContent || message.body);
     const classification = await textClassifier.classifySentence(imageContent || message.body);
+
     
-    //console.log(classification);
     
-    if (!imageContent) {
-        sentiment.setLanguage(languageGuess.alpha2);
-        sentiment.process(conversationId, message);
-        
-        // console.log('messages: ', message.body);
-        // console.log('Language Guess: ', languageGuess);
-    }
+    sentiment.setLanguage(languageGuess.alpha2);
+    const sentimentScore = !imageContent 
+        ? await sentiment.process(conversationId, message) 
+        : 0;
+
     const label = classification.classification.label;
-    if (['request','question','negative'].includes(label)){
+    if(sentimentScore <0){
+        complaintKeywords.push(classification.keyWords);
+    }else if (['request','question','negative'].includes(label)){
         if(label =='request' || label == 'question'){
             ideaKeywords.push(classification.keyWords);
         }else{
             complaintKeywords.push(classification.keyWords);
         }
     }
+
+    
 }
 
 // Main Driver
