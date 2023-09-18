@@ -28,12 +28,12 @@ class SentimentStatisticTracker {
      * @param {Object} message An object containing:
      * -sender {string} The userId of the person who sent the message
      * -body {string} The body of the message the sender sent
+     * @returns {number} Calculated sentiment score for message.body
      */
-   process(conversationId, message) {
-        this.sentimentManger.process(this.language, message.body)
-            .then(result => {
-                this.addScore(conversationId, message.sender, result.score);
-            });
+    async process(conversationId, message) {
+        const result = await this.sentimentManger.process(this.language, message.body);
+        this.addScore(conversationId, message.sender, result.score);
+        return result.score;
     }
     
     /**

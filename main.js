@@ -3,6 +3,7 @@ const path = require("path");
 const JSONStream = require("JSONStream");
 const { createWorker } = require("tesseract.js");
 
+const textClassifier = require("./utils/textClassifier.js");
 const SentimentStatisticTracker = require("./utils/sentimentAnalysis.js");
 const guessLanguage = require("./utils/languageGuesserModel.js")
 
@@ -62,19 +63,36 @@ async function performOCR(base64Image) {
  * @param {Object} message An object containing:
  * -sender {string} The userId of the person who sent the message
  * -body {string} The body of the message the sender sent
+ * @param {string[][]} complaintKeywords An array of keywords classified 
+ * as a complaint
+ * @param {string[][]} ideaKeywords An array of keywords classified 
+ * as an idea
  */
-async function processMessage(sentiment, conversationId, message) {
+async function processMessage(sentiment, conversationId, message, complaintKeywords, ideaKeywords) {
     const imageData = filterBase64Data(message.body);
-    const languageGuess = guessLanguage(message.body);
     const imageContent = imageData && await performOCR(imageData);
+    const languageGuess = guessLanguage(imageContent || message.body);
+    const classification = await textClassifier.classifySentence(imageContent || message.body);
 
-    if (!imageContent) {
-        sentiment.setLanguage(languageGuess.alpha2);
-        sentiment.process(conversationId, message);
+    
+    
+    sentiment.setLanguage(languageGuess.alpha2);
+    const sentimentScore = !imageContent 
+        ? await sentiment.process(conversationId, message) 
+        : 0;
 
-        // console.log('messages: ', message.body);
-        // console.log('Language Guess: ', languageGuess);
+    const label = classification.classification.label;
+    if(sentimentScore <0){
+        complaintKeywords.push(classification.keyWords);
+    }else if (['request','question','negative'].includes(label)){
+        if(label =='request' || label == 'question'){
+            ideaKeywords.push(classification.keyWords);
+        }else{
+            complaintKeywords.push(classification.keyWords);
+        }
     }
+
+    
 }
 
 // Main Driver
@@ -100,6 +118,8 @@ async function processMessage(sentiment, conversationId, message) {
     });
 
     const sentiment = new SentimentStatisticTracker();
+    const complaintKeywords = [];
+    const ideaKeywords =[];
     console.log(`${feedbackJsonFile} processing has begun...`);
 
     // Assumes the main JSON will only have a singular member, messages,
@@ -113,11 +133,26 @@ async function processMessage(sentiment, conversationId, message) {
                     const messages = chunk[conversationId];
 
                     await Promise.all(messages.map(async message => 
-                        await processMessage(sentiment, conversationId, message)
+                        await processMessage(sentiment, 
+                            conversationId, 
+                            message, 
+                            complaintKeywords, 
+                            ideaKeywords)
                     ));
                 })
             );
 
+            console.log();
+            console.log("--------Complaints--------");
+            // keyWord.length filters for sentences that didn't have significant keywords
+            complaintKeywords.forEach(keyWord => keyWord.length && console.log(`----${keyWord}`)); 
+            
+            console.log();
+            console.log("--------Ideas--------");
+            // keyWord.length filters for sentences that didn't have significant keywords
+            ideaKeywords.forEach(keyWord => keyWord.length && console.log(`----${keyWord}`));
+            
+            console.log()
             sentiment.logSentimentStats();
         });
 })();
