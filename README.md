@@ -90,5 +90,4 @@ manager.addDocument('en', "Could you make this change?", 'request');
 After adding data to that file, you can train the model with your new training data by running the follwing command:
 ```
 npm run update-model
-
 ```
